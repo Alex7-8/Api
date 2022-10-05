@@ -15,12 +15,12 @@
         break;
 
         case "GetId":
-            $datos=$categoria->get_categoria_x_id($body["cat_id"]);
+            $datos=$categoria->get_articulos_x_id($body["id"]);
             echo json_encode($datos);
         break;
 
         case "Insert":
-            $datos=$categoria->insert_categoria($body["cat_nom"],$body["cat_obs"]);
+            $datos=$categoria->insert_articulos($body["nombre"],$body["categoria"],$body["sub_cat"],$body["des"],$body["enlace"]);
             echo json_encode("Insert Correcto");
         break;
 
