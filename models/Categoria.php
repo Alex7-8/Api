@@ -51,7 +51,7 @@
                 sub_categoria = ?,
                 descripcion = ?,
                 enlace = ?,
-                estado = ?,
+                estado = ?
                 WHERE 
                 id = ?
                 ";
