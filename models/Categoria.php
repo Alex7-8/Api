@@ -42,7 +42,7 @@
             return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
         }
 
-        public function update_articulos($id,$nombre,$categoria,$sub_cat,$des,$enlace,$estado){
+        public function update_articulos($id,$nombre_articulo,$categoria,$sub_categoria,$descripcion,$enlace,$estado){
             $conectar= parent::conexion();
             parent::set_names();
             $sql="UPDATE articulos set
@@ -55,10 +55,10 @@
                 WHERE id = ?
                 ";
             $sql=$conectar->prepare($sql);
-            $sql->bindValue(1, $nombre);
+            $sql->bindValue(1, $nombre_articulo);
             $sql->bindValue(2, $categoria);
-            $sql->bindValue(3, $sub_cat);
-            $sql->bindValue(4, $des);
+            $sql->bindValue(3, $sub_categoria);
+            $sql->bindValue(4, $descripcion);
             $sql->bindValue(5, $enlace);
             $sql->bindValue(6, $estado);
             $sql->bindValue(7, $id);
