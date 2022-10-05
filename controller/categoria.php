@@ -7,7 +7,7 @@
 
     $body = json_decode(file_get_contents("php://input"), true);
 
-    switch($_GET["op"]){
+    switch($_GET["Op"]){
 
         case "GetAll":
             $datos=$categoria->get_categoria();

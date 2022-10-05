@@ -4,7 +4,7 @@
 
         protected function Conexion(){
             try {
-				$conectar = $this->dbh = new PDO("mysql:local=localhost;dbname=andercode_webservice","root","");
+				$conectar = $this->dbh = new PDO("mysql:local=localhost;dbname=chacongt_apirestmysql","chacongt_alex78","55262412");
 				return $conectar;	
 			} catch (Exception $e) {
 				print "¡Error BD!: " . $e->getMessage() . "<br/>";
