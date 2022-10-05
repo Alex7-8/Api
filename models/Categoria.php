@@ -52,7 +52,8 @@
                 descripcion = ?
                 enlace = ?
                 estado = ?
-                WHERE id = ?
+                WHERE 
+                id = '$id'
                 ";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $nombre_articulo);
@@ -61,7 +62,6 @@
             $sql->bindValue(4, $descripcion);
             $sql->bindValue(5, $enlace);
             $sql->bindValue(6, $estado);
-            $sql->bindValue(7, $id);
             $sql->execute();
             return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
         }
@@ -80,4 +80,3 @@
         }
 
     }
-?>
