@@ -3,7 +3,16 @@
         public function get_articulos(){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="SELECT * FROM articulos";
+            $sql="SELECT * FROM articulos WHERE estado = 1";
+            $sql=$conectar->prepare($sql);
+            $sql->execute();
+            return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        public function get_articulos_des(){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="SELECT * FROM articulos WHERE estado = 0";
             $sql=$conectar->prepare($sql);
             $sql->execute();
             return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
@@ -33,31 +42,39 @@
             return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
         }
 
-        public function update_categoria($cat_id,$cat_nom,$cat_obs){
+        public function update_articulos($id,$nombre,$categoria,$sub_cat,$des,$enlace,$estado){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="UPDATE tm_categoria set
-                cat_nom = ?,
-                cat_obs = ?
-                WHERE
-                cat_id = ?";
+            $sql="UPDATE articulos set
+                nombre_articulo = ?,
+                categoria = ?
+                sub_categoria = ?
+                descripcion = ?
+                enlace = ?
+                estado = ?
+                WHERE id = ?
+                ";
             $sql=$conectar->prepare($sql);
-            $sql->bindValue(1, $cat_nom);
-            $sql->bindValue(2, $cat_obs);
-            $sql->bindValue(3, $cat_id);
+            $sql->bindValue(1, $nombre);
+            $sql->bindValue(2, $categoria);
+            $sql->bindValue(3, $sub_cat);
+            $sql->bindValue(4, $des);
+            $sql->bindValue(5, $enlace);
+            $sql->bindValue(6, $estado);
+            $sql->bindValue(7, $id);
             $sql->execute();
             return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
         }
 
-        public function delete_categoria($cat_id){
+        public function delete_articulos($id){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="UPDATE tm_categoria set
+            $sql="UPDATE articulos set
                 est = '0'
                 WHERE
-                cat_id = ?";
+                id = ?";
             $sql=$conectar->prepare($sql);
-            $sql->bindValue(1, $cat_id);
+            $sql->bindValue(1, $id);
             $sql->execute();
             return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
         }

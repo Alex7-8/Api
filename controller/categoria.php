@@ -13,7 +13,10 @@
             $datos=$categoria->get_articulos();
             echo json_encode($datos);
         break;
-
+        case "GetIn":
+            $datos=$categoria->get_articulos_des();
+            echo json_encode($datos);
+        break;
         case "GetId":
             $datos=$categoria->get_articulos_x_id($body["id"]);
             echo json_encode($datos);
@@ -25,12 +28,12 @@
         break;
 
         case "Update":
-            $datos=$categoria->update_categoria($body["cat_id"],$body["cat_nom"],$body["cat_obs"]);
+            $datos=$categoria->update_articulos($body["id"],$body["nombre"],$body["categoria"],$body["sub_cat"],$body["des"],$body["enlace"],$body["estado"]);
             echo json_encode("Update Correcto");
         break;
 
         case "Delete":
-            $datos=$categoria->delete_categoria($body["cat_id"]);
+            $datos=$categoria->delete_articulos($body["id"]);
             echo json_encode("Delete Correcto");
         break;
     }
