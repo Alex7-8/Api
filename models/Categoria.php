@@ -31,7 +31,7 @@
         public function insert_articulos($nombre_articulo,$categoria,$sub_categoria,$descripcion,$enlace){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="INSERT INTO tm_categoria(id,nombre_articulo,categoria,sub_categoria,descripcion,enlace,estado) VALUES (NULL,?,?,?,?,?,'1');";
+            $sql="INSERT INTO articulos(id,nombre_articulo,categoria,sub_categoria,descripcion,enlace,estado) VALUES (NULL,?,?,?,?,?,'1');";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $nombre_articulo);
             $sql->bindValue(2, $categoria);
