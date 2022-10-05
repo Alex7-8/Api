@@ -65,7 +65,15 @@
             $sql->bindValue(6, $estado);
             $sql->bindValue(7, $id);
             $sql->execute();
-            return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+            
+            if ($conectar->query($sql) === TRUE) {
+                $response["status"] = 200;
+                $response["message"] = "Registro Guardado";
+            } else {
+                $response["status"] = 400;
+                $response["message"] = "Error: " . $sql . "<br>" . $conectar->error;
+            }
+            return $response=$sql->fetchAll(PDO::FETCH_ASSOC);
         }
 
         public function delete_articulos($id){
