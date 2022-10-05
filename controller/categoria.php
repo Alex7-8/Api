@@ -29,7 +29,7 @@
 
         case "Update":
             $datos=$categoria->update_articulos($body["id"],$body["nombre_articulo"],$body["categoria"],$body["sub_categoria"],$body["descripcion"],$body["enlace"],$body["estado"]);
-            echo json_encode($datos);
+            echo json_encode("Update Correcto");
         break;
 
         case "Delete":
