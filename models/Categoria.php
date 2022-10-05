@@ -70,7 +70,7 @@
             $conectar= parent::conexion();
             parent::set_names();
             $sql="UPDATE articulos set
-                est = '0'
+                estado = '0'
                 WHERE
                 id = ?";
             $sql=$conectar->prepare($sql);
