@@ -28,7 +28,7 @@
         break;
 
         case "Update":
-            $datos=$categoria->update_articulos($body["id"],$body["nombre"],$body["categoria"],$body["sub_cat"],$body["des"],$body["enlace"],$body["estado"]);
+            $datos=$categoria->update_articulos($body["id"],$body["nombre_articulo"],$body["categoria"],$body["sub_categoria"],$body["descripcion"],$body["enlace"],$body["estado"]);
             echo json_encode("Update Correcto");
         break;
 
