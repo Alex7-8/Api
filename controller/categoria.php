@@ -10,7 +10,7 @@
     switch($_GET["Op"]){
 
         case "GetAll":
-            $datos=$categoria->get_categoria();
+            $datos=$categoria->get_articulos();
             echo json_encode($datos);
         break;
 
