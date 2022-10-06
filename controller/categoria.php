@@ -3,7 +3,9 @@
 
     require_once("../config/conexion.php");
     require_once("../models/Categoria.php");
+    require_once("../models/Acceso.php");
     $categoria = new Categoria();
+    $acceso = new Acceso();
 
     $body = json_decode(file_get_contents("php://input"), true);
 
@@ -35,6 +37,11 @@
         case "Delete":
             $datos=$categoria->delete_articulos($body["id"]);
             echo json_encode("Delete Correcto");
+        break;
+
+        case "GetAcc":
+            $datos=$acceso->get_acceso();
+            echo json_encode($datos);
         break;
     }
 ?>
