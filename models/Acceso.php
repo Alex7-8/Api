@@ -4,25 +4,25 @@ class Acceso extends Conectar{
     public function get_acceso(){
         $conectar= parent::conexion();
         parent::set_names();
-        $sql="SELECT * FROM acceso";
+        $sql="SELECT * FROM acceso WHERE estado = 1";
         $sql=$conectar->prepare($sql);
         $sql->execute();
         return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function get_articulos_des(){
+    public function get_acceso_des(){
         $conectar= parent::conexion();
         parent::set_names();
-        $sql="SELECT * FROM articulos WHERE estado = 0";
+        $sql="SELECT * FROM acceso WHERE estado = 0";
         $sql=$conectar->prepare($sql);
         $sql->execute();
         return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function get_articulos_x_id($id){
+    public function get_acceso_x_id($id){
         $conectar= parent::conexion();
         parent::set_names();
-        $sql="SELECT * FROM articulos WHERE id = ?";
+        $sql="SELECT * FROM acceso WHERE id = ?";
         $sql=$conectar->prepare($sql);
         $sql->bindValue(1, $id);
         $sql->execute();

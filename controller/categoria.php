@@ -25,7 +25,7 @@
         break;
 
         case "Insert":
-            $datos=$categoria->insert_articulos($body["nombre_articulo"],$body["categoria"],$body["sub_categoria"],$body["descripcion"],$body["enlace"]);
+            $datos=$categoria->insert_articulos($body["nom_articulo"],$body["sub_categoria"],$body["descripcion"],$body["autor"],$body["fechayhora"]);
             echo json_encode("Insert Correcto");
         break;
 

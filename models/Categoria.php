@@ -3,7 +3,7 @@
         public function get_articulos(){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="SELECT * FROM articulos WHERE estado = 1";
+            $sql="SELECT * FROM articulo WHERE estado = 1";
             $sql=$conectar->prepare($sql);
             $sql->execute();
             return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
@@ -12,7 +12,7 @@
         public function get_articulos_des(){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="SELECT * FROM articulos WHERE estado = 0";
+            $sql="SELECT * FROM articulo WHERE estado = 0";
             $sql=$conectar->prepare($sql);
             $sql->execute();
             return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
@@ -21,47 +21,62 @@
         public function get_articulos_x_id($id){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="SELECT * FROM articulos WHERE id = ?";
+            $sql="SELECT * FROM articulo WHERE id = ?";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $id);
             $sql->execute();
             return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
         }
 
-        public function insert_articulos($nombre_articulo,$categoria,$sub_categoria,$descripcion,$enlace){
+        public function insert_articulos($nom_articulo,$sub_categoria,$descripcion,$autor,$fechayhora){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="INSERT INTO articulos(id,nombre_articulo,categoria,sub_categoria,descripcion,enlace,estado) VALUES (NULL,?,?,?,?,?,'1');";
+            $sql="INSERT INTO articulo
+            (id,
+            nom_articulo,
+            sub_categoria,
+            descripcion,
+            estado,
+            autor,
+            fechayhora) 
+            VALUES 
+            (NULL,
+            ?,
+            ?,
+            ?,
+            ?,
+            ?,
+            ?)";
             $sql=$conectar->prepare($sql);
-            $sql->bindValue(1, $nombre_articulo);
-            $sql->bindValue(2, $categoria);
-            $sql->bindValue(3, $sub_categoria);
-            $sql->bindValue(4, $descripcion);
-            $sql->bindValue(5, $enlace);
+            $sql->bindValue(1, $nom_articulo);
+            $sql->bindValue(2, $sub_categoria);
+            $sql->bindValue(3, $descripcion);
+            $sql->bindValue(4, $autor);
+            $sql->bindValue(5, '1');
+            $sql->bindValue(6, $fechayhora);
             $sql->execute();
             return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
         }
 
-        public function update_articulos($id,$nombre_articulo,$categoria,$sub_categoria,$descripcion,$enlace,$estado){
+        public function update_articulos($id,$nom_articulo,$sub_categoria,$descripcion,$estado,$autor,$fechayhora){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="UPDATE articulos set
-                nombre_articulo = ?,
-                categoria = ?,
+            $sql="UPDATE articulo set
+                nom_articulo = ?,
                 sub_categoria = ?,
                 descripcion = ?,
-                enlace = ?,
-                estado = ?
-                WHERE 
-                id = ?
-                ";
+                estado = ?,
+                autor = ?,
+                fechayhora = ?
+                WHERE
+                id = ?";
             $sql=$conectar->prepare($sql);
-            $sql->bindValue(1, $nombre_articulo);
-            $sql->bindValue(2, $categoria);
+            $sql->bindValue(1, $nom_articulo);
             $sql->bindValue(3, $sub_categoria);
             $sql->bindValue(4, $descripcion);
-            $sql->bindValue(5, $enlace);
-            $sql->bindValue(6, $estado);
+            $sql->bindValue(2, $estado);
+            $sql->bindValue(5, $autor);
+            $sql->bindValue(6, $fechayhora);
             $sql->bindValue(7, $id);
             $sql->execute();
          return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
@@ -70,7 +85,7 @@
         public function delete_articulos($id){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="UPDATE articulos set
+            $sql="UPDATE articulo set
                 estado = '0'
                 WHERE
                 id = ?";
