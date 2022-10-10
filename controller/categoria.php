@@ -30,7 +30,7 @@
         break;
 
         case "Update":
-            $datos=$categoria->update_articulos($body["id"],$body["nombre_articulo"],$body["categoria"],$body["sub_categoria"],$body["descripcion"],$body["enlace"],$body["estado"]);
+            $datos=$categoria->update_articulos($body["id"],$body["nom_articulo"],$body["sub_categoria"],$body["descripcion"],$body["estado"],$body["autor"],$body["fechayhora"]);
             echo json_encode($datos);
         break;
 

@@ -3,7 +3,7 @@
         public function get_articulos(){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="SELECT * FROM articulo WHERE estado = 1";
+            $sql="SELECT * FROM articulo WHERE estado = '1' ";
             $sql=$conectar->prepare($sql);
             $sql->execute();
             return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
@@ -12,7 +12,7 @@
         public function get_articulos_des(){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="SELECT * FROM articulo WHERE estado = 0";
+            $sql="SELECT * FROM articulo WHERE estado = '0'";
             $sql=$conectar->prepare($sql);
             $sql->execute();
             return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
