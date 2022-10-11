@@ -153,7 +153,7 @@
 
             $sql->execute();
 
-            return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+            return $resultado=$id_art->fetchAll(PDO::FETCH_ASSOC);
             
         }
 
