@@ -33,6 +33,7 @@
             $conectar= parent::conexion();
             parent::set_names();
             // No Publicado Eliminado Archivado
+            $fecha = date('Y-m-d H:i:s');
             $sql="INSERT INTO articulo
             (id,
             nom_articulo,
@@ -48,9 +49,11 @@
             '$descripcion',
             '$estado',
             $autor,
-            date('Y-m-d H:i:s'))";
+            '$fecha')";
             $sql=$conectar->prepare($sql);
-            $sql->execute();
+            if($sql->execute()){
+                return "ok";
+             }
             return $sql->errorInfo();
         }
         
