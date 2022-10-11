@@ -49,7 +49,8 @@ if($method == "OPTIONS") {
         break;
 
         case "GimgId":
-            $datos=$categoria->get_imgId($body["id"]);
+            $id = $_GET["id"];
+            $datos=$categoria->get_imgId($id);
             echo json_encode($datos);
         break;
 
