@@ -35,7 +35,7 @@ if($method == "OPTIONS") {
         break;
 
         case "Setart":
-            $datos=$categoria->insert_articulos($body["nom_articulo"],$body["sub_categoria"],$body["descripcion"],$body["autor"],$body["fechayhora"]);
+            $datos=$categoria->insert_articulos($body["nom_articulo"],$body["sub_categoria"],$body["descripcion"],$body["autor"],date($format, $timestamp));
             echo json_encode("Insert Correcto");
         break;
 
@@ -45,7 +45,8 @@ if($method == "OPTIONS") {
         break;
 
         case "Delart":
-            $datos=$categoria->delete_articulos($body["id"]);
+            $id = $_GET["id"];
+            $datos=$categoria->delete_articulos($id);
             echo json_encode("Delete Correcto");
         break;
 
