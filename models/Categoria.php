@@ -165,6 +165,17 @@
             return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
         }
 
+
+
+        public function get_img_x_id($id){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="SELECT * FROM img WHERE id_art = ?";
+            $sql=$conectar->prepare($sql);
+            $sql->bindValue(1, $id);
+            $sql->execute();
+            return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+        }
     }
 
 
