@@ -45,15 +45,14 @@
             ?,
             ?,
             ?,
-            ?,
+            '1',
             ?)";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $nom_articulo);
             $sql->bindValue(2, $sub_categoria);
             $sql->bindValue(3, $descripcion);
             $sql->bindValue(4, $autor);
-            $sql->bindValue(5, '1');
-            $sql->bindValue(6, $fechayhora);
+            $sql->bindValue(5, $fechayhora);
             $sql->execute();
 
             
