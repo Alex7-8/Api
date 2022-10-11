@@ -35,11 +35,11 @@ if($method == "OPTIONS") {
         break;
 
         case "Setart":
-            $datos=$categoria->insert_articulos($body["nom_articulo"],$body["sub_categoria"],$body["descripcion"],$body["estado"],$body["autor"],new DateTime());
+            $datos=$categoria->insert_articulos($body["nom_articulo"],$body["sub_categoria"],$body["descripcion"],$body["estado"],$body["autor"]);
             if($datos){
                 echo json_encode(array('success' => 1, 'message' => 'Articulo Creado'));}
                 else{
-                echo json_encode(array('success' => 0, 'message' => 'Error al Crear Articulo','time' => new DateTime()));
+                echo json_encode(array('success' => 0, 'message' => 'Error al Crear Articulo'));
                 }
             
         break;

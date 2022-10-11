@@ -28,7 +28,8 @@
             return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
         }
 
-        public function insert_articulos($nom_articulo,$sub_categoria,$descripcion,$estado,$autor,$fechayhora){
+        public function insert_articulos($nom_articulo,$sub_categoria,$descripcion,$estado,$autor){
+            date_default_timezone_set('America/Guatemala');
             $conectar= parent::conexion();
             parent::set_names();
             // No Publicado Eliminado Archivado
@@ -41,7 +42,7 @@
             descripcion,
             estado,
             autor,
-            fechayhora) 
+            fechayhora)) 
             VALUES 
             (NULL,
             $nom_articulo,
@@ -49,7 +50,7 @@
             $descripcion,
             $estado,
             $autor,
-            $fechayhora)";
+            date('y-m-d h:i:s'))";
             $sql=$conectar->prepare($sql);
             if($sql->execute()){
                 return true;
