@@ -44,8 +44,8 @@
             ?,
             ?,
             ?,
-            ?,
             '1',
+            ?,
             ?)";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $nom_articulo);
@@ -113,8 +113,8 @@
             ?,
             ?,
             ?,
-            ?,
             '1',
+            ?,
             ?)";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(2, $nom_articulo);
