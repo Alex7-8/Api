@@ -36,7 +36,7 @@ if($method == "OPTIONS") {
 
         case "Setart":
             $datos=$categoria->insert_articulos($body["nom_articulo"],$body["sub_categoria"],$body["descripcion"],$body["autor"],date($format, $timestamp));
-            echo json_encode("Insert Correcto");
+            echo json_encode($datos);
         break;
 
         case "Upart":
