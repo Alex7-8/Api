@@ -28,9 +28,12 @@
             return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
         }
 
-        public function insert_articulos($nom_articulo,$sub_categoria,$descripcion,$autor,$fechayhora){
+        public function insert_articulos($nom_articulo,$sub_categoria,$descripcion,$estado,$autor,$fechayhora){
             $conectar= parent::conexion();
             parent::set_names();
+            // No Publicado Eliminado Archivado
+            if($estado == null){
+                $estado = 'Publicado';}
             $sql="INSERT INTO articulo
             (id,
             nom_articulo,
@@ -39,24 +42,21 @@
             estado,
             autor,
             fechayhora) 
+            
             VALUES 
             (NULL,
-            ?,
-            ?,
-            ?,
-            '1',
-            ?,
-            ?)";
+            $nom_articulo,
+            $sub_categoria,
+            $descripcion,
+            $estado,
+            $autor,
+            $fechayhora)";
             $sql=$conectar->prepare($sql);
-            $sql->bindValue(1, $nom_articulo);
-            $sql->bindValue(2, $sub_categoria);
-            $sql->bindValue(3, $descripcion);
-            $sql->bindValue(4, $autor);
-            $sql->bindValue(5, $fechayhora);
             $sql->execute();
-
-            
-            return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+            if($sql->execute()){
+                return true;
+            }
+            return false;
         }
 
         public function update_articulos($id,$nom_articulo,$sub_categoria,$descripcion,$estado,$autor,$fechayhora){
@@ -97,63 +97,7 @@
         }
 
 
-        public function insert_arti($nom_articulo,$sub_categoria,$descripcion,$autor,$fechayhora,$enlace,$fecha,$hora){
-            $conectar= parent::conexion();
-            parent::set_names();
-            $sql="INSERT INTO articulo
-            (id,
-            nom_articulo,
-            sub_categoria,
-            descripcion,
-            estado,
-            autor,
-            fechayhora) 
-            VALUES 
-            (NULL,
-            ?,
-            ?,
-            ?,
-            '1',
-            ?,
-            ?)";
-            $sql=$conectar->prepare($sql);
-            $sql->bindValue(2, $nom_articulo);
-            $sql->bindValue(2, $sub_categoria);
-            $sql->bindValue(3, $descripcion);
-            $sql->bindValue(4, $autor);
-            $sql->bindValue(5, $fechayhora);
-            $sql->execute();
 
-            $sqlI = "SELECT max(id) id from articulo";
-            $sqlI=$conectar->prepare($sqlI);
-            $sqlI->execute();
-            $res = $sqlI->fetchAll(PDO::FETCH_ASSOC);
-            $id_art = $res[0];
-
-
-            $sql="INSERT INTO img
-            (id_img,
-            id_art,
-            enlace,
-            fecha,
-            hora)
-            VALUES 
-            (NULL,
-            ?,
-            ?,
-            ?,
-            ?,)";
-            $sql=$conectar->prepare($sql);
-            $sql->bindValue(1, $id_art);
-            $sql->bindValue(2, $enlace);
-            $sql->bindValue(3, $fecha);
-            $sql->bindValue(4, $hora);
-
-            $sql->execute();
-
-            return $resultado=$id_art->fetchAll(PDO::FETCH_ASSOC);
-            
-        }
         
         public function get_imgId($id){
             $conectar= parent::conexion();
