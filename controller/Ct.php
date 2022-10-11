@@ -20,42 +20,47 @@ if($method == "OPTIONS") {
 
     switch($_GET["Op"]){
 
-        case "GetAll":
+        case "Gart":
             $datos=$categoria->get_articulos();
             echo json_encode($datos);
         break;
-        case "GetIn":
+        case "GartDes":
             $datos=$categoria->get_articulos_des();
             echo json_encode($datos);
         break;
-        case "GetId":
+        case "GartId":
             $datos=$categoria->get_articulos_x_id($body["id"]);
             echo json_encode($datos);
         break;
 
-        case "Insert":
+        case "Setart":
             $datos=$categoria->insert_articulos($body["nom_articulo"],$body["sub_categoria"],$body["descripcion"],$body["autor"],$body["fechayhora"]);
             echo json_encode("Insert Correcto");
         break;
 
-        case "Update":
+        case "Upart":
             $datos=$categoria->update_articulos($body["id"],$body["nom_articulo"],$body["sub_categoria"],$body["descripcion"],$body["estado"],$body["autor"],$body["fechayhora"]);
             echo json_encode($datos);
         break;
 
-        case "Delete":
+        case "Delart":
             $datos=$categoria->delete_articulos($body["id"]);
             echo json_encode("Delete Correcto");
         break;
 
-        case "GetAcc":
-            $datos=$acceso->get_acceso();
+        case "GimgId":
+            $datos=$categoria->get_imgId($body["id"]);
             echo json_encode($datos);
         break;
 
-        case "InsertAll":
-            $datos=$categoria->insert_arti($body["nom_articulo"],$body["sub_categoria"],$body["descripcion"],$body["autor"],$body["fechayhora"],$body["enlace"],$body["fecha"],$body["hora"]);
-            echo json_encode($datos);
-        break;
+        // case "GetAcc":
+        //     $datos=$acceso->get_acceso();
+        //     echo json_encode($datos);
+        // break;
+
+        // case "InsertAll":
+        //     $datos=$categoria->insert_arti($body["nom_articulo"],$body["sub_categoria"],$body["descripcion"],$body["autor"],$body["fechayhora"],$body["enlace"],$body["fecha"],$body["hora"]);
+        //     echo json_encode($datos);
+        // break;
     }
 ?>
