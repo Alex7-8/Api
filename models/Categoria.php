@@ -48,7 +48,7 @@
             '$descripcion',
             '$estado',
             $autor,
-            '2022-10-10 00:00:00.000')";
+            date('Y-m-d H:i:s'))";
             $sql=$conectar->prepare($sql);
             $sql->execute();
             return $sql->errorInfo();
