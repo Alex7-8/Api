@@ -39,9 +39,8 @@ if($method == "OPTIONS") {
             if($datos){
                 echo json_encode(array('success' => 1, 'message' => 'Articulo Creado'));}
                 else{
-                echo json_encode(array('success' => 0, 'message' => 'Error al Crear Articulo'));
-                }
-            
+                echo json_encode(array('success' => 0, 'message' => $datos));
+            }
         break;
 
         case "Upart":

@@ -55,7 +55,7 @@
             if($sql->execute()){
                 return true;
             }
-            return false;
+            return $sql->errorInfo();
         }
 
         public function update_articulos($id,$nom_articulo,$sub_categoria,$descripcion,$estado,$autor,$fechayhora){
