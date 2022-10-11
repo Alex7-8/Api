@@ -33,8 +33,6 @@
             $conectar= parent::conexion();
             parent::set_names();
             // No Publicado Eliminado Archivado
-            if($estado == null){
-                $estado = 'Publicado';}
             $sql="INSERT INTO articulo
             (id,
             nom_articulo,
