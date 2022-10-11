@@ -115,22 +115,21 @@
             ?,
             ?,
             ?,
-            ?,
+            '1',
             ?)";
             $sql=$conectar->prepare($sql);
-            $sql->bindValue(1, $nom_articulo);
+            $sql->bindValue(2, $nom_articulo);
             $sql->bindValue(2, $sub_categoria);
             $sql->bindValue(3, $descripcion);
             $sql->bindValue(4, $autor);
-            $sql->bindValue(5, '1');
-            $sql->bindValue(6, $fechayhora);
+            $sql->bindValue(5, $fechayhora);
             $sql->execute();
 
             $sqlI = "SELECT max(id) id from articulo";
             $sqlI=$conectar->prepare($sqlI);
             $sqlI->execute();
             $res = $sqlI->fetchAll(PDO::FETCH_ASSOC);
-            $id_art = $res[0]['id'];
+            $id_art = $res[0];
 
 
             $sql="INSERT INTO img
