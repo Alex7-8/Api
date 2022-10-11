@@ -55,6 +55,8 @@
             $sql->bindValue(5, '1');
             $sql->bindValue(6, $fechayhora);
             $sql->execute();
+
+            
             return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
         }
 
@@ -95,4 +97,69 @@
             return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
         }
 
+
+        public function insert_arti($nom_articulo,$sub_categoria,$descripcion,$autor,$fechayhora,$enlace,$fecha,$hora){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="INSERT INTO articulo
+            (id,
+            nom_articulo,
+            sub_categoria,
+            descripcion,
+            estado,
+            autor,
+            fechayhora) 
+            VALUES 
+            (NULL,
+            ?,
+            ?,
+            ?,
+            ?,
+            ?,
+            ?)";
+            $sql=$conectar->prepare($sql);
+            $sql->bindValue(1, $nom_articulo);
+            $sql->bindValue(2, $sub_categoria);
+            $sql->bindValue(3, $descripcion);
+            $sql->bindValue(4, $autor);
+            $sql->bindValue(5, '1');
+            $sql->bindValue(6, $fechayhora);
+            $sql->execute();
+
+            $sqlI = "SELECT max(id) id from articulo";
+            $sqlI=$conectar->prepare($sqlI);
+            $sqlI->execute();
+            $res = $sqlI->fetchAll(PDO::FETCH_ASSOC);
+            $id_art = $res[0]['id'];
+
+
+            $sql="INSERT INTO img
+            (id_img,
+            id_art,
+            enlace,
+            fecha,
+            hora)
+            VALUES 
+            (NULL,
+            ?,
+            ?,
+            ?,
+            ?,)";
+            $sql=$conectar->prepare($sql);
+            $sql->bindValue(1, $id_art);
+            $sql->bindValue(2, $enlace);
+            $sql->bindValue(3, $fecha);
+            $sql->bindValue(4, $hora);
+
+            $sql->execute();
+
+            return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+            
+        }
+
+
+
     }
+
+
+    

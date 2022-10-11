@@ -43,5 +43,10 @@
             $datos=$acceso->get_acceso();
             echo json_encode($datos);
         break;
+
+        case "Insert":
+            $datos=$categoria->insert_arti($body["nom_articulo"],$body["sub_categoria"],$body["descripcion"],$body["autor"],$body["fechayhora"],$body["enlace"],$body["fecha"],$body["hora"]);
+            echo json_encode("Insert Correcto");
+        break;
     }
 ?>
