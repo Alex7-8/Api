@@ -42,7 +42,6 @@
             estado,
             autor,
             fechayhora) 
-            
             VALUES 
             (NULL,
             $nom_articulo,
@@ -52,7 +51,6 @@
             $autor,
             $fechayhora)";
             $sql=$conectar->prepare($sql);
-            $sql->execute();
             if($sql->execute()){
                 return true;
             }
