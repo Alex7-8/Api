@@ -43,7 +43,7 @@
             estado,
             autor,
             fechayhora) 
-            VALUES 
+            VALUES
             (NULL,
             $nom_articulo,
             $sub_categoria,
@@ -52,11 +52,10 @@
             $autor,
             '2022-10-10 00:00:00.000')";
             $sql=$conectar->prepare($sql);
-            if($sql->execute()){
-                return true;
-            }
+            $sql->execute();
             return $sql->errorInfo();
         }
+        
 
         public function update_articulos($id,$nom_articulo,$sub_categoria,$descripcion,$estado,$autor,$fechayhora){
             $conectar= parent::conexion();
