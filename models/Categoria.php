@@ -42,7 +42,7 @@
             descripcion,
             estado,
             autor,
-            fechayhora)) 
+            fechayhora) 
             VALUES 
             (NULL,
             $nom_articulo,
