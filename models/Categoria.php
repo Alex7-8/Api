@@ -1,9 +1,10 @@
 <?php
     class Categoria extends Conectar{
+        
         public function get_articulos(){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="SELECT * FROM articulo WHERE estado = '1' ";
+            $sql="SELECT * FROM articulo WHERE estado = 'Publicado' ";
             $sql=$conectar->prepare($sql);
             $sql->execute();
             return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
@@ -12,7 +13,7 @@
         public function get_articulos_des(){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="SELECT * FROM articulo WHERE estado = '0'";
+            $sql="SELECT * FROM articulo WHERE estado = 'No Publicado' || estado = 'Archivado'|| estado = 'Eliminado' ";
             $sql=$conectar->prepare($sql);
             $sql->execute();
             return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
@@ -86,7 +87,7 @@
             $conectar= parent::conexion();
             parent::set_names();
             $sql="UPDATE articulo set
-                estado = '0'
+                estado = 'Eliminado'
                 WHERE
                 id = ?";
             $sql=$conectar->prepare($sql);
@@ -94,9 +95,6 @@
             $sql->execute();
             return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
         }
-
-
-
         
         public function get_imgId($id){
             $conectar= parent::conexion();
