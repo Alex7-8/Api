@@ -15,7 +15,7 @@ if($method == "OPTIONS") {
     require_once("../models/Acceso.php");
     require_once("../models/katy.php");
     $categoria = new Categoria();
-    $acceso = new Acceso();
+    $Katy = new katy();
 
     $body = json_decode(file_get_contents("php://input"), true);
 
@@ -107,28 +107,22 @@ if($method == "OPTIONS") {
             $datos=$categoria->delete_usuario($id);
             echo json_encode($datos);
         break;
-        
     /*Fin Métodos para CRUD Usuario*/
-        //case "GetAcc":
-         //    $datos=$categoria->get_img_x_id($id);
-         //    echo json_encode($datos);
-         //break;
-
-        // case "InsertAll":
-        //     $datos=$categoria->insert_arti($body["nom_articulo"],$body["sub_categoria"],$body["descripcion"],$body["autor"],$body["fechayhora"],$body["enlace"],$body["fecha"],$body["hora"]);
-        //     echo json_encode($datos);
-        // break;
-    }
+    
     /*Categoria CRUD*/
     case "Getcat":
         $datos=$categoria->get_categoria();
         echo json_encode($datos);
     break;
 
-   
+    case "GcatDes":
+        $datos=$categoria->get_categoria_des();
+        echo json_encode($datos);
+    break;
+
     case "Getctid":
         $id = $_GET["id"];
-        $datos=$categoria->get_categoria_id($id);
+        $datos=$categoria->get_categoria_x_id($id);
         echo json_encode($datos);
     break;
 
@@ -142,7 +136,7 @@ if($method == "OPTIONS") {
     break;
 
     case "Upcat":
-        $datos=$categoria->update_categoria($body["id"],$body["nombre"],$body["descripcion"],$body["estado"],$body["fechayhora"]);
+        $datos=$categoria->update_categoria($body["id"],$body["nombre"],$body["descripcion"],$body["estado"]);
         if($datos=="ok"){
             echo json_encode(array('status' => 'Actualizado Correctamente'));}
         else{
@@ -151,15 +145,17 @@ if($method == "OPTIONS") {
 
     case "Delcat":
         $id = $_GET["id"];
-        $datos=$categoria->delete_categori($id);
+        $datos=$categoria->delete_categoria($id);
         echo json_encode($datos);
     break;
 
     /*fin*/
 
-       /*Categoria CRUD*/
+       /*Suscripcion CRUD*/
        case "Getsus":
         $datos=$categoria->get_suscripcion();
         echo json_encode($datos);
     break;
+    }
+    
 ?>
