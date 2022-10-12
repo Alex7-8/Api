@@ -135,8 +135,9 @@
     public function get_usuario_x_id($id){
         $conectar= parent::conexion();
         parent::set_names();
-        $sql="SELECT * FROM usuario WHERE id = '$id'";
+        $sql="SELECT * FROM usuario WHERE id = ?";
         $sql=$conectar->prepare($sql);
+        $sql->bindValue(1, $id);
         $sql->execute();
         return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
     }
