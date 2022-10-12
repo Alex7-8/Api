@@ -19,7 +19,7 @@ if($method == "OPTIONS") {
     $body = json_decode(file_get_contents("php://input"), true);
 
     switch($_GET["Op"]){
-
+    /*Inicio Métodos para CRUD Articulo*/
         case "Gart":
             $datos=$categoria->get_articulos();
             echo json_encode($datos);
@@ -56,26 +56,58 @@ if($method == "OPTIONS") {
             $datos=$categoria->delete_articulos($id);
             echo json_encode($datos);
         break;
+    /*Fin Métodos para CRUD Articulo*/
 
+    /*Inicio Métodos para CRUD Img*/
         case "GimgId":
             $id = $_GET["id"];
             $datos=$categoria->get_imgId($id);
             echo json_encode($datos);
         break;
-
-        case "Setart":
-            $datos=$categoria->insert_articulos($body["nom_articulo"],$body["sub_categoria"],$body["descripcion"],$body["estado"],$body["autor"]);
-            if($datos=="ok"){
-                echo json_encode(array('status' => 'Guardado Correctamente'));}
-            else{
-                echo json_encode($datos);}
-            
-        break;
-
+    /*Fin Métodos para CRUD Img*/
+        
+    /*Inicio Métodos para CRUD Metodo de pago*/
         case "GmetP":
             $datos=$categoria->get_metodopago();
             echo json_encode($datos);
         break;
+    /*Fin Métodos para CRUD Metodo de pago*/
+
+    /*Inicio Métodos para CRUD Usuario*/
+        case "Gusu":
+            $datos=$categoria->get_usuario();
+            echo json_encode($datos);
+        break;
+        case "GusuDes":
+            $datos=$categoria->get_usuario_des();
+            echo json_encode($datos);
+        break;
+        case "GusuId":
+            $id = $_GET["id"];
+            $datos=$categoria->get_usuario_x_id($id);
+            echo json_encode($datos);
+        break;
+        case "Setusu":
+            $datos=$categoria->insert_usuario($body["nombre"],$body["apellido"],$body["correo"],$body["pass"],$body["tip_user"],$body["estadp"]);
+            if($datos=="ok"){
+                echo json_encode(array('status' => 'Guardado Correctamente'));}
+            else{
+                echo json_encode($datos);}
+        break;
+        case "Upusu":
+            $datos=$categoria->update_usuario($body["id"],$body["nombre"],$body["apellido"],$body["correo"],$body["pass"],$body["tip_user"],$body["estadp"],$body["fechayhora"]);
+            if($datos=="ok"){
+                echo json_encode(array('status' => 'Actualizado Correctamente'));}
+            else{
+                echo json_encode($datos);}
+        break;
+        case "Delusu":
+            $id = $_GET["id"];
+            $datos=$categoria->delete_usuario($id);
+            echo json_encode($datos);
+        break;
+        
+    /*Fin Métodos para CRUD Usuario*/
         //case "GetAcc":
          //    $datos=$categoria->get_img_x_id($id);
          //    echo json_encode($datos);
