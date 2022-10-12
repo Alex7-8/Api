@@ -25,7 +25,7 @@ public function get_categoria_id($id){
 public function insert_categoria($nombre,$descripcion,$estado){
     $conectar= parent::conexion();
     parent::set_names();
-    $sql="INSERT INTO articulos(id,nombre, descripcion,estado) VALUES (NULL,?,?,'1');";
+    $sql="INSERT INTO categoria(id,nombre, descripcion,estado) VALUES (NULL,?,?,?);";
     $sql=$conectar->prepare($sql);
     $sql->bindValue(1, $nombre);
     $sql->bindValue(2, $descripcion);
@@ -58,7 +58,7 @@ public function delete_categoria($id){
     $conectar= parent::conexion();
     parent::set_names();
     $sql="UPDATE categoria set
-        estado = '0'
+        estado = 'Inactivo'
         WHERE
         id = ?";
     $sql=$conectar->prepare($sql);
@@ -67,11 +67,14 @@ public function delete_categoria($id){
     return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
 }
 
-
-
-
-
-
+/*suscripcion*/
+public function get_suscripcion(){
+    $conectar= parent::conexion();
+    parent::set_names();
+    $sql="SELECT * FROM suscripcion ";
+    $sql=$conectar->prepare($sql);
+    $sql->execute();
+    return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
 
 
 }

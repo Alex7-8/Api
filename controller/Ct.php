@@ -156,4 +156,10 @@ if($method == "OPTIONS") {
     break;
 
     /*fin*/
+
+       /*Categoria CRUD*/
+       case "Getsus":
+        $datos=$categoria->get_suscripcion();
+        echo json_encode($datos);
+    break;
 ?>
