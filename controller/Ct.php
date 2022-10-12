@@ -37,7 +37,7 @@ if($method == "OPTIONS") {
         case "Setart":
             $datos=$categoria->insert_articulos($body["nom_articulo"],$body["sub_categoria"],$body["descripcion"],$body["estado"],$body["autor"]);
             if($datos=="ok"){
-                echo json_encode(array('status' => 'ok'));}
+                echo json_encode(array('status' => 'Guardado Correctamente'));}
             else{
                 echo json_encode($datos);}
             
@@ -46,7 +46,7 @@ if($method == "OPTIONS") {
         case "Upart":
             $datos=$categoria->update_articulos($body["id"],$body["nom_articulo"],$body["sub_categoria"],$body["descripcion"],$body["estado"],$body["autor"],$body["fechayhora"]);
             if($datos=="ok"){
-                echo json_encode(array('status' => 'ok'));}
+                echo json_encode(array('status' => 'Actualizado Correctamente'));}
             else{
                 echo json_encode($datos);}
         break;
