@@ -63,6 +63,15 @@ if($method == "OPTIONS") {
             echo json_encode($datos);
         break;
 
+        case "Setart":
+            $datos=$categoria->insert_articulos($body["nom_articulo"],$body["sub_categoria"],$body["descripcion"],$body["estado"],$body["autor"]);
+            if($datos=="ok"){
+                echo json_encode(array('status' => 'Guardado Correctamente'));}
+            else{
+                echo json_encode($datos);}
+            
+        break;
+
         //case "GetAcc":
          //    $datos=$categoria->get_img_x_id($id);
          //    echo json_encode($datos);
