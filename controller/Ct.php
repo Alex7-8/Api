@@ -13,6 +13,7 @@ if($method == "OPTIONS") {
     require_once("../config/conexion.php");
     require_once("../models/Categoria.php");
     require_once("../models/Acceso.php");
+    require_once("../models/katy.php");
     $categoria = new Categoria();
     $acceso = new Acceso();
 
@@ -118,4 +119,41 @@ if($method == "OPTIONS") {
         //     echo json_encode($datos);
         // break;
     }
+    /*Categoria CRUD*/
+    case "Getcat":
+        $datos=$categoria->get_categoria();
+        echo json_encode($datos);
+    break;
+
+   
+    case "Getctid":
+        $id = $_GET["id"];
+        $datos=$categoria->get_categoria_id($id);
+        echo json_encode($datos);
+    break;
+
+    case "Setcat":
+        $datos=$categoria->insert_categoria($body["nombre"],$body["descripcion"],$body["estado"]);
+        if($datos=="ok"){
+            echo json_encode(array('status' => 'Guardado Correctamente'));}
+        else{
+            echo json_encode($datos);}
+        
+    break;
+
+    case "Upcat":
+        $datos=$categoria->update_categoria($body["id"],$body["nombre"],$body["descripcion"],$body["estado"],$body["fechayhora"]);
+        if($datos=="ok"){
+            echo json_encode(array('status' => 'Actualizado Correctamente'));}
+        else{
+            echo json_encode($datos);}
+    break;
+
+    case "Delcat":
+        $id = $_GET["id"];
+        $datos=$categoria->delete_categori($id);
+        echo json_encode($datos);
+    break;
+
+    /*fin*/
 ?>
