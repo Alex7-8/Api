@@ -63,10 +63,10 @@
             $conectar= parent::conexion();
             parent::set_names();
             $sql="UPDATE articulo set
-                nom_articulo = $nom_articulo,
-                sub_categoria = $sub_categoria,
-                descripcion = $descripcion,
-                estado = $estado,
+                nom_articulo = '$nom_articulo',
+                sub_categoria = '$sub_categoria',
+                descripcion = '$descripcion',
+                estado = '$estado',
                 autor = $autor
                 WHERE id = $id";
             $sql=$conectar->prepare($sql);
