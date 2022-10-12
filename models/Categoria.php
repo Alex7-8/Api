@@ -90,7 +90,14 @@
         /* Fin CRUD Articulo*/
 
         /* Inicio CRUD Img*/
-
+        public function get_img(){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="SELECT * FROM img";
+            $sql=$conectar->prepare($sql);
+            $sql->execute();
+            return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+        }
         public function get_imgId($id){
             $conectar= parent::conexion();
             parent::set_names();
@@ -99,6 +106,7 @@
             $sql->execute();
             return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
         }
+
             /* Fin CRUD Img*/
 
         /* Inicio CRUD Metodo de Pago*/
@@ -185,5 +193,196 @@
         return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
     }
     /* Fin CRUD Usuarios*/ 
+
+    /* Inicio CRUD Tipo de Usuario*/
+    public function get_tipouser(){
+        $conectar= parent::conexion();
+        parent::set_names();
+        $sql="SELECT * FROM tipo_usuario";
+        $sql=$conectar->prepare($sql);
+        $sql->execute();
+        return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
     }
+    public function get_tipouser_x_id($id){
+        $conectar= parent::conexion();
+        parent::set_names();
+        $sql="SELECT * FROM tipo_usuario WHERE id = ?";
+        $sql=$conectar->prepare($sql);
+        $sql->bindValue(1, $id);
+        $sql->execute();
+        return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function insert_tipouser($rol,$fecha_sus){
+        $conectar= parent::conexion();
+        parent::set_names();
+        $sql="INSERT INTO tipo_usuario(id,rol,fecha_sus)) 
+        VALUES 
+        (NULL,'$rol','$fecha_sus');";
+        $sql=$conectar->prepare($sql);
+        if($sql->execute()){
+            return "ok";
+        }
+        return $sql->errorInfo();
+    }
+    public function update_tipouser($id,$rol,$fecha_sus)
+    {
+        $conectar= parent::conexion();
+        parent::set_names();
+        $sql="UPDATE articulos set
+            rol = '$rol',
+            fecha_sus = '$fecha_sus'
+            WHERE id = $id"; 
+        $sql=$conectar->prepare($sql);
+        if($sql->execute()){
+            return "ok";
+         }
+        return $sql->errorInfo();
+    }
+    public function delete_tipouser($id){
+        $conectar= parent::conexion();
+        parent::set_names();
+        $sql="DELETE FROM tipo_usuario WHERE id = $id";
+        $sql=$conectar->prepare($sql);
+        $sql->execute();
+        return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    /* Fin CRUD Tipo de Usuario*/
+
+    /* Inicio CRUD Sub_Categoria*/
+    public function get_subcategoria(){
+        $conectar= parent::conexion();
+        parent::set_names();
+        $sql="SELECT * FROM sub_categoria WHERE estado = 'Activo'";
+        $sql=$conectar->prepare($sql);
+        $sql->execute();
+        return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function get_subcategoria_x_id($id){
+        $conectar= parent::conexion();
+        parent::set_names();
+        $sql="SELECT * FROM sub_categoria WHERE nombre_sub = ?";
+        $sql=$conectar->prepare($sql);
+        $sql->bindValue(1, $id);
+        $sql->execute();
+        return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function insert_subcategoria($nombre_sub,$id_categoria,$descripcion,$estado){
+        $conectar= parent::conexion();
+        parent::set_names();
+        $sql="INSERT INTO sub_categoria(nombre_sub,id_categoria,descripcion,estado) 
+        VALUES 
+        ('$nombre_sub','$id_categoria','$descripcion','$estado');";
+        $sql=$conectar->prepare($sql);
+        if($sql->execute()){
+            return "ok";
+        }
+        return $sql->errorInfo();
+    }
+    public function update_subcategoria($nombre_sub,$id_categoria,$descripcion,$estado){
+        $conectar= parent::conexion();
+        parent::set_names();
+        $sql="UPDATE sub_categoria set
+            nombre_sub = '$nombre_sub',
+            id_categoria = '$id_categoria',
+            descripcion = '$descripcion',
+            estado = '$estado'
+            WHERE nombre_sub = $nombre_sub";
+        $sql=$conectar->prepare($sql);
+        if($sql->execute()){
+            return "ok";
+         }
+        return $sql->errorInfo();
+    }
+    public function delete_subcategoria($nombre_sub){
+        $conectar= parent::conexion();
+        parent::set_names();
+        $sql="UPDATE sub_categoria set
+            estado = 'Inactivo'
+            WHERE
+            nombre_sub = $nombre_sub";
+        $sql=$conectar->prepare($sql);
+        $sql->execute();
+        return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+    }
+    /* Fin CRUD Sub_Categoria*/
+
+    /* Inicio CRUD Categoria*/
+    public function get_categoria(){
+        $conectar= parent::conexion();
+        parent::set_names();
+        $sql="SELECT * FROM categoria WHERE estado = 'Activo'";
+        $sql=$conectar->prepare($sql);
+        $sql->execute();
+        return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function get_categoria_des(){
+        $conectar= parent::conexion();
+        parent::set_names();
+        $sql="SELECT * FROM categoria WHERE estado = 'Inactivo'";
+        $sql=$conectar->prepare($sql);
+        $sql->execute();
+        return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function get_categoria_x_id($id){
+        $conectar= parent::conexion();
+        parent::set_names();
+        $sql="SELECT * FROM categoria WHERE id = ?";
+        $sql=$conectar->prepare($sql);
+        $sql->bindValue(1, $id);
+        $sql->execute();
+        return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function insert_categoria($nombre,$descripcion,$estado){
+        $conectar= parent::conexion();
+        parent::set_names();
+        $sql="INSERT INTO categoria(nombre_categoria,descripcion,estado) 
+        VALUES 
+        ('$nombre','$descripcion','$estado');";
+        $sql=$conectar->prepare($sql);
+        if($sql->execute()){
+            return "ok";
+        }
+        return $sql->errorInfo();
+    }
+    public function update_categoria($id,$nombre,$descripcion,$estado){
+        $conectar= parent::conexion();
+        parent::set_names();
+        $sql="UPDATE categoria set
+            nombre_categoria = '$nombre',
+            descripcion = '$descripcion',
+            estado = '$estado'
+            WHERE id = $id";
+        $sql=$conectar->prepare($sql);
+        if($sql->execute()){
+            return "ok";
+         }
+        return $sql->errorInfo();
+    }
+    public function delete_categoria($id){
+        $conectar= parent::conexion();
+        parent::set_names();
+        $sql="UPDATE categoria set
+            estado = 'Inactivo'
+            WHERE
+            id = $id";
+        $sql=$conectar->prepare($sql);
+        $sql->execute();
+        return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+    }
+    /* Fin CRUD Categoria*/
+
+     /*suscripcion*/
+     public function get_suscripcion(){
+        $conectar= parent::conexion();
+        parent::set_names();
+        $sql="SELECT * FROM suscripcion ";
+        $sql=$conectar->prepare($sql);
+        $sql->execute();
+        return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+    
+    
+    }
+    /*fin*/
+}
 
