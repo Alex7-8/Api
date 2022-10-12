@@ -63,23 +63,13 @@
             $conectar= parent::conexion();
             parent::set_names();
             $sql="UPDATE articulo set
-                nom_articulo = ?,
-                sub_categoria = ?,
-                descripcion = ?,
-                estado = ?,
-                autor = ?,
-                fechayhora = ?
-                WHERE
-                id = ?";
+                nom_articulo = $nom_articulo,
+                sub_categoria = $sub_categoria,
+                descripcion = $descripcion,
+                estado = $estado,
+                autor = $autor
+                WHERE id = $id";
             $sql=$conectar->prepare($sql);
-            $sql->bindValue(1, $nom_articulo);
-            $sql->bindValue(2, $sub_categoria);
-            $sql->bindValue(3, $descripcion);
-            $sql->bindValue(4, $estado);
-            $sql->bindValue(5, $autor);
-            $sql->bindValue(6, $fechayhora);
-            $sql->bindValue(7, $id);
-            $sql->execute();
             if($sql->execute()){
                 return "ok";
              }
@@ -92,9 +82,8 @@
             $sql="UPDATE articulo set
                 estado = 'Eliminado'
                 WHERE
-                id = ?";
+                id = $id";
             $sql=$conectar->prepare($sql);
-            $sql->bindValue(1, $id);
             $sql->execute();
             return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
         }

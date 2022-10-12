@@ -54,7 +54,7 @@ if($method == "OPTIONS") {
         case "Delart":
             $id = $_GET["id"];
             $datos=$categoria->delete_articulos($id);
-            echo json_encode("Delete Correcto");
+            echo json_encode($datos);
         break;
 
         case "GimgId":
