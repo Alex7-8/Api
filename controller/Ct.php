@@ -45,7 +45,10 @@ if($method == "OPTIONS") {
 
         case "Upart":
             $datos=$categoria->update_articulos($body["id"],$body["nom_articulo"],$body["sub_categoria"],$body["descripcion"],$body["estado"],$body["autor"],$body["fechayhora"]);
-            echo json_encode($datos);
+            if($datos=="ok"){
+                echo json_encode(array('status' => 'ok'));}
+            else{
+                echo json_encode($datos);}
         break;
 
         case "Delart":

@@ -80,7 +80,10 @@
             $sql->bindValue(6, $fechayhora);
             $sql->bindValue(7, $id);
             $sql->execute();
-         return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+            if($sql->execute()){
+                return "ok";
+             }
+            return $sql->errorInfo();
         }
 
         public function delete_articulos($id){
