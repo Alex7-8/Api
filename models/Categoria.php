@@ -135,7 +135,7 @@
     public function get_usuario_x_id($id){
         $conectar= parent::conexion();
         parent::set_names();
-        $sql="SELECT * FROM usuario WHERE id = ?";
+        $sql="SELECT * FROM usuario WHERE id_user = ?";
         $sql=$conectar->prepare($sql);
         $sql->bindValue(1, $id);
         $sql->execute();
@@ -165,7 +165,7 @@
             pass = '$pass',
             tip_user = '$tip_user',
             estado = '$estado'
-            WHERE id = $id";
+            WHERE id_user = $id";
         $sql=$conectar->prepare($sql);
         if($sql->execute()){
             return "ok";
@@ -179,7 +179,7 @@
         $sql="UPDATE usuario set
             estado = 'Inactivo'
             WHERE
-            id = '$id'";
+            id_user = $id";
         $sql=$conectar->prepare($sql);
         $sql->execute();
         return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
