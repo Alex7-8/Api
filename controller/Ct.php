@@ -72,6 +72,10 @@ if($method == "OPTIONS") {
             
         break;
 
+        case "GmetP":
+            $datos=$categoria->get_metodopago();
+            echo json_encode($datos);
+        break;
         //case "GetAcc":
          //    $datos=$categoria->get_img_x_id($id);
          //    echo json_encode($datos);

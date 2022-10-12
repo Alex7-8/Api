@@ -96,6 +96,15 @@
             $sql->execute();
             return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
         }
+        public function get_metodopago(){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="SELECT * FROM met_pago WHERE estado = 'Activo'";
+            $sql=$conectar->prepare($sql);
+            $sql->execute();
+            return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+        }
+
     }
 
 
