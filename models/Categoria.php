@@ -84,8 +84,10 @@
                 WHERE
                 id = $id";
             $sql=$conectar->prepare($sql);
-            $sql->execute();
-            return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+            if($sql->execute()){
+                return "ok";
+             }
+            return $sql->errorInfo();
         }
         /* Fin CRUD Articulo*/
 

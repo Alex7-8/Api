@@ -51,7 +51,10 @@ if($method == "OPTIONS") {
         case "Delart":
             $id = $_GET["id"];
             $datos=$categoria->delete_articulos($id);
-            echo json_encode($datos);
+            if($datos=="ok"){
+                echo json_encode(array('status' => 'Estado Actualizado a Eliminado'));}
+            else{
+                echo json_encode(array('status' => 'No existe o '+ $datos));}
         break;
     /*Fin Métodos para CRUD Articulo*/
  
