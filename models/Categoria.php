@@ -93,7 +93,15 @@
         public function get_img(){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="SELECT * FROM img";
+            $sql="SELECT * FROM img WHERE estado = 'Publicado' ";
+            $sql=$conectar->prepare($sql);
+            $sql->execute();
+            return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+        }
+        public function get_img_Des(){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="SELECT * FROM img WHERE estado = 'Eliminado' ";
             $sql=$conectar->prepare($sql);
             $sql->execute();
             return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
@@ -106,14 +114,225 @@
             $sql->execute();
             return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
         }
+        public function insert_img($id_art,$enlace,$fecha,$hora){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="INSERT INTO img
+            (id_img,
+            id_art,
+            enlace,
+            fecha,
+            hora)
+            VALUES
+            (NULL,
+            '$id_art',
+            '$enlace',
+            '$fecha',
+            '$hora')";
+            $sql=$conectar->prepare($sql);
+            if($sql->execute()){
+                return "ok";
+             }
+            return $sql->errorInfo();
+        }
+        public function update_img($id_img,$id_art,$enlace,$fecha,$hora){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql=" UPDATE img SET
+            (id_art,
+            enlace,
+            fecha,
+            hora)
+            VALUES
+            ('$id_art',
+            '$enlace',
+            '$fecha',
+            '$hora'
+             WHERE 
+            id_img = $id_img";
+            $sql=$conectar->prepare($sql);
+            if($sql->execute()){
+                return "ok";
+             }
+            return $sql->errorInfo();
+        }
+        public function delete_img($id){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="UPDATE img SET
+            estado = 'Eliminado'
+             WHERE id_img = $id";
+            $sql=$conectar->prepare($sql);
+            $sql->execute();
+            return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+        }
 
             /* Fin CRUD Img*/
+        /* Inicio CRUD Pago*/
+        public function get_pago(){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="SELECT * FROM pago WHERE estado = 'Activo'";
+            $sql=$conectar->prepare($sql);
+            $sql->execute();
+            return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+        }
+        public function get_pago_Des(){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="SELECT * FROM pago WHERE estado = 'Inactivo'";
+            $sql=$conectar->prepare($sql);
+            $sql->execute();
+            return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+        }
+        public function get_pagoId($id_metP){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="SELECT * FROM pago WHERE id_metP = $id_metP";
+            $sql=$conectar->prepare($sql);
+            $sql->execute();
+            return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+        }
+        public function insert_pago($nombtarjeta,$numtarjeta,$vencimiento,$cvv,$estado){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="INSERT INTO pago
+            (id_metP,
+            nombtarjeta,
+            numtarjeta,
+            vencimiento,
+            cvv,
+            estado)
+            VALUES
+            (NULL,
+            '$nombtarjeta',
+            '$numtarjeta',
+            '$vencimiento',
+            '$cvv',
+            '$estado')";
+            $sql=$conectar->prepare($sql);
+            if($sql->execute()){
+                return "ok";
+             }
+            return $sql->errorInfo();
+        }
+        public function update_pago($id_metP,$nombtarjeta,$numtarjeta,$vencimiento,$cvv,$estado){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql=" UPDATE pago SET
+            (nombtarjeta,
+            numtarjeta,
+            vencimiento,
+            cvv,
+            estado)
+            VALUES
+            ('$nombtarjeta',
+            '$numtarjeta',
+            '$vencimiento',
+            '$cvv',
+            '$estado'
+             WHERE 
+            id_metP = $id_metP";
+            $sql=$conectar->prepare($sql);
+            if($sql->execute()){
+                return "ok";
+             }
+            return $sql->errorInfo();
+        }
+        public function delete_pago($id){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="DELETE FROM pago WHERE id_metP = $id";
+            $sql=$conectar->prepare($sql);
+            $sql->execute();
+            return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+        }
+        /* Fin CRUD Pago*/
+
+
 
         /* Inicio CRUD Metodo de Pago*/
         public function get_metodopago(){
             $conectar= parent::conexion();
             parent::set_names();
             $sql="SELECT * FROM met_pago WHERE estado = 'Activo'";
+            $sql=$conectar->prepare($sql);
+            $sql->execute();
+            return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+        }
+        public function get_metodopago_Des(){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="SELECT * FROM met_pago WHERE estado = 'Inactivo'";
+            $sql=$conectar->prepare($sql);
+            $sql->execute();
+            return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+        }
+        public function get_metodopago_x_id($id_metP){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="SELECT * FROM met_pago WHERE id_metP = $id_metP";
+            $sql=$conectar->prepare($sql);
+            $sql->execute();
+            return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+        }
+        public function insert_metodopago($id_metP,$id_user,$nombre,$apellido,$telefono,$correo,$pais,$direccion,$nit,$estado){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="INSERT INTO met_pago
+            (id_metP,
+            id_user,
+            nombre,
+            apellido,
+            telefono,
+            correo,
+            pais,
+            direccion,
+            nit,
+            estado)
+            VALUES
+            ('$id_metP',
+            '$id_user',
+            '$nombre',
+            '$apellido',
+            '$telefono',
+            '$correo',
+            '$pais',
+            '$direccion',
+            '$nit',
+            '$estado')";
+            $sql=$conectar->prepare($sql);
+            if($sql->execute()){
+                return "ok";
+             }
+            return $sql->errorInfo();
+        }
+        public function update_metodopago($id_metP,$id_user,$nombre,$apellido,$telefono,$correo,$pais,$direccion,$nit,$estado){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="UPDATE met_pago SET
+            id_user = '$id_user',
+            nombre = '$nombre',
+            apellido = '$apellido',
+            telefono = '$telefono',
+            correo = '$correo',
+            pais = '$pais',
+            direccion = '$direccion',
+            nit = '$nit',
+            estado = '$estado'
+            WHERE id_metP = $id_metP";
+            $sql=$conectar->prepare($sql);
+            if($sql->execute()){
+                return "ok";
+             }
+            return $sql->errorInfo();
+        }
+        public function delete_metodopago($id_metP){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="UPDATE met_pago SET
+            estado = 'Eliminado'
+            WHERE id_metP = $id_metP";
             $sql=$conectar->prepare($sql);
             $sql->execute();
             return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
@@ -212,7 +431,9 @@
         $sql->execute();
         return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
     }
-    public function insert_tipouser($rol,$fecha_sus){
+    public function insert_tipouser($rol){
+        date_default_timezone_set('America/Guatemala');
+        $fecha_sus = date("Y-m-d H:i:s");
         $conectar= parent::conexion();
         parent::set_names();
         $sql="INSERT INTO tipo_usuario(id,rol,fecha_sus)) 
@@ -224,13 +445,11 @@
         }
         return $sql->errorInfo();
     }
-    public function update_tipouser($id,$rol,$fecha_sus)
-    {
+    public function update_tipouser($id,$rol) {
         $conectar= parent::conexion();
         parent::set_names();
         $sql="UPDATE articulos set
             rol = '$rol',
-            fecha_sus = '$fecha_sus'
             WHERE id = $id"; 
         $sql=$conectar->prepare($sql);
         if($sql->execute()){
@@ -249,11 +468,84 @@
 
     /* Fin CRUD Tipo de Usuario*/
 
+ /* Inicio CRUD Categoria*/
+ public function get_categoria(){
+    $conectar= parent::conexion();
+    parent::set_names();
+    $sql="SELECT * FROM categoria WHERE estado = 'Activo'";
+    $sql=$conectar->prepare($sql);
+    $sql->execute();
+    return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+}
+public function get_categoria_des(){
+    $conectar= parent::conexion();
+    parent::set_names();
+    $sql="SELECT * FROM categoria WHERE estado = 'Inactivo'";
+    $sql=$conectar->prepare($sql);
+    $sql->execute();
+    return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+}
+public function get_categoria_x_id($id){
+    $conectar= parent::conexion();
+    parent::set_names();
+    $sql="SELECT * FROM categoria WHERE id = ?";
+    $sql=$conectar->prepare($sql);
+    $sql->bindValue(1, $id);
+    $sql->execute();
+    return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+}
+public function insert_categoria($nombre,$descripcion,$estado){
+    $conectar= parent::conexion();
+    parent::set_names();
+    $sql="INSERT INTO categoria(nombre_categoria,descripcion,estado) 
+    VALUES 
+    ('$nombre','$descripcion','$estado');";
+    $sql=$conectar->prepare($sql);
+    if($sql->execute()){
+        return "ok";
+    }
+    return $sql->errorInfo();
+}
+public function update_categoria($id,$nombre,$descripcion,$estado){
+    $conectar= parent::conexion();
+    parent::set_names();
+    $sql="UPDATE categoria set
+        nombre_categoria = '$nombre',
+        descripcion = '$descripcion',
+        estado = '$estado'
+        WHERE id = $id";
+    $sql=$conectar->prepare($sql);
+    if($sql->execute()){
+        return "ok";
+     }
+    return $sql->errorInfo();
+}
+public function delete_categoria($id){
+    $conectar= parent::conexion();
+    parent::set_names();
+    $sql="UPDATE categoria set
+        estado = 'Inactivo'
+        WHERE
+        id = $id";
+    $sql=$conectar->prepare($sql);
+    $sql->execute();
+    return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+}
+/* Fin CRUD Categoria*/
+
     /* Inicio CRUD Sub_Categoria*/
     public function get_subcategoria(){
         $conectar= parent::conexion();
         parent::set_names();
         $sql="SELECT * FROM sub_categoria WHERE estado = 'Activo'";
+        $sql=$conectar->prepare($sql);
+        $sql->execute();
+        return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function get_subcategoria_des(){
+        $conectar= parent::conexion();
+        parent::set_names();
+        $sql="SELECT * FROM sub_categoria WHERE estado = 'Inactivo'";
         $sql=$conectar->prepare($sql);
         $sql->execute();
         return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
@@ -307,51 +599,122 @@
     }
     /* Fin CRUD Sub_Categoria*/
 
-    /* Inicio CRUD Categoria*/
-    public function get_categoria(){
+   
+     /*suscripcion*/
+    public function get_suscripcion(){
         $conectar= parent::conexion();
         parent::set_names();
-        $sql="SELECT * FROM categoria WHERE estado = 'Activo'";
+        $sql="SELECT * FROM suscripcion WHERE estado = 'Activo'";
         $sql=$conectar->prepare($sql);
         $sql->execute();
         return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
-    }
-    public function get_categoria_des(){
+     }
+    public function get_suscripcion_des(){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="SELECT * FROM suscripcion WHERE estado = 'Inactivo'";
+            $sql=$conectar->prepare($sql);
+            $sql->execute();
+            return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+        }
+    public function get_suscripcion_x_id($id_sus){
         $conectar= parent::conexion();
         parent::set_names();
-        $sql="SELECT * FROM categoria WHERE estado = 'Inactivo'";
+        $sql="SELECT * FROM suscripcion WHERE id_sus = ?";
         $sql=$conectar->prepare($sql);
+        $sql->bindValue(1, $id_sus);
         $sql->execute();
         return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+
     }
-    public function get_categoria_x_id($id){
+    public function insert_suscripcion($id_sus,$estado){
+        date_default_timezone_set('America/Guatemala');
+        $fecha_sus = date('Y-m-d');
         $conectar= parent::conexion();
         parent::set_names();
-        $sql="SELECT * FROM categoria WHERE id = ?";
-        $sql=$conectar->prepare($sql);
-        $sql->bindValue(1, $id);
-        $sql->execute();
-        return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
-    }
-    public function insert_categoria($nombre,$descripcion,$estado){
-        $conectar= parent::conexion();
-        parent::set_names();
-        $sql="INSERT INTO categoria(nombre_categoria,descripcion,estado) 
+        $sql="INSERT INTO suscripcion(id_sus,fecha_sus,estado) 
         VALUES 
-        ('$nombre','$descripcion','$estado');";
+        ('$id_sus','$fecha_sus','$estado');";
         $sql=$conectar->prepare($sql);
         if($sql->execute()){
             return "ok";
         }
         return $sql->errorInfo();
     }
-    public function update_categoria($id,$nombre,$descripcion,$estado){
+    public function update_suscripcion($id_sus,$estado){
         $conectar= parent::conexion();
         parent::set_names();
-        $sql="UPDATE categoria set
-            nombre_categoria = '$nombre',
-            descripcion = '$descripcion',
+        $sql="UPDATE suscripcion set
+            id_sus = '$id_sus',
             estado = '$estado'
+            WHERE id_sus = $id_sus";
+        $sql=$conectar->prepare($sql);
+        if($sql->execute()){
+            return "ok";
+         }
+        return $sql->errorInfo();
+    }
+    public function delete_suscripcion($id_sus){
+        $conectar= parent::conexion();
+        parent::set_names();
+        $sql="UPDATE suscripcion SET  
+        estado = 'Inactivo' WHERE id_sus = $id_sus";
+        $sql=$conectar->prepare($sql);
+        $sql->execute();
+        return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+    }
+    /*fin*/
+
+    /* Inicio CR Acceso*/
+    public function get_acceso(){
+        $conectar= parent::conexion();
+        parent::set_names();
+        $sql="SELECT * FROM acceso";
+        $sql=$conectar->prepare($sql);
+        $sql->execute();
+        return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function get_acceso_x_id($id){
+        $conectar= parent::conexion();
+        parent::set_names();
+        $sql="SELECT * FROM acceso WHERE id = ?";
+        $sql=$conectar->prepare($sql);
+        $sql->bindValue(1, $id);
+        $sql->execute();
+     return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function insert_acceso($id_user,$id_art,$direccion,$direccion2,$conteo){
+        $conectar = parent::conexion();
+        parent::set_names();
+        $sql="INSERT INTO 
+        acceso(
+        id
+        id_user,
+        id_art,
+        direccion,
+        direccion2,
+        conteo) VALUES 
+        (Null,
+        '$id_user',
+        '$id_art',
+        '$direccion',
+        '$direccion2',
+        '$conteo');";
+         $sql=$conectar->prepare($sql);
+         if($sql->execute()){
+             return "ok";
+         }
+         return $sql->errorInfo();
+    }
+    public function update_acceso($id,$id_user,$id_art,$direccion,$direccion2,$conteo){
+        $conectar= parent::conexion();
+        parent::set_names();
+        $sql="UPDATE acceso set
+            id_user = '$id_user',
+            id_art = '$id_art',
+            direccion = '$direccion',
+            direccion2 = '$direccion2',
+            conteo = '$conteo'
             WHERE id = $id";
         $sql=$conectar->prepare($sql);
         if($sql->execute()){
@@ -359,30 +722,50 @@
          }
         return $sql->errorInfo();
     }
-    public function delete_categoria($id){
+    
+    /* Fin CRU Acceso*/
+    
+    /* Inicio CR Bitacora*/
+    public function get_bitacora(){
         $conectar= parent::conexion();
         parent::set_names();
-        $sql="UPDATE categoria set
-            estado = 'Inactivo'
-            WHERE
-            id = $id";
+        $sql="SELECT * FROM bitacora";
         $sql=$conectar->prepare($sql);
         $sql->execute();
         return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
     }
-    /* Fin CRUD Categoria*/
+    public function get_bitacora_x_id($id_bit){
+        $conectar= parent::conexion();
+        parent::set_names();
+        $sql="SELECT * FROM bitacora WHERE id_bit = ?";
+        $sql=$conectar->prepare($sql);
+        $sql->bindValue(1, $id_bit);
+        $sql->execute();
+     return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function insert_bitacora($id_art,$id_user,$cambios,$fecha_mod){
+        $conectar = parent::conexion();
+        parent::set_names();
+        $sql="INSERT INTO 
+        bitacora(
+        id_bit,
+        id_art,
+        id_user,
+        cambios,
+        fecha_mod) VALUES
+        (Null,
+        '$id_art',
+        '$id_user',
+        '$cambios',
+        '$fecha_mod');";
+         $sql=$conectar->prepare($sql);
+         if($sql->execute()){
+             return "ok";
+         }
+         return $sql->errorInfo(); 
+    }
 
-     /*suscripcion*/
-     public function get_suscripcion(){
-        $conectar= parent::conexion();
-        parent::set_names();
-        $sql="SELECT * FROM suscripcion ";
-        $sql=$conectar->prepare($sql);
-        $sql->execute();
-        return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
-    
-    
-    }
-    /*fin*/
+    /* Fin CR Bitacora*/
+
 }
 
