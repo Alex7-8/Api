@@ -54,7 +54,7 @@ if($method == "OPTIONS") {
             if($datos=="ok"){
                 echo json_encode(array('status' => 'Estado Actualizado a Eliminado'));}
             else{
-                echo json_encode(array('status' => 'No existe o '+ $datos));}
+                echo json_encode($datos);}
         break;
     /*Fin Métodos para CRUD Articulo*/
  
@@ -90,7 +90,10 @@ if($method == "OPTIONS") {
         case "Delimg":
             $id = $_GET["id"];
             $datos=$categoria->delete_img($id);
-            echo json_encode($datos);
+            if($datos=="ok"){
+                echo json_encode(array('status' => 'Estado Actualizado a Eliminado'));}
+            else{
+                echo json_encode($datos);}
         break;
     /*Fin Métodos para CRUD Img*/
 
@@ -125,7 +128,10 @@ if($method == "OPTIONS") {
         case "Delpag":
             $id = $_GET["id"];
             $datos=$categoria->delete_pago($id);
-            echo json_encode($datos);
+            if($datos=="ok"){
+                echo json_encode(array('status' => 'Eliminado'));}
+            else{
+                echo json_encode($datos);}
         break;
     /*Fin Métodos para CRUD Pago*/
 
@@ -162,7 +168,10 @@ if($method == "OPTIONS") {
         case "DelmetP":
             $id = $_GET["id"];
             $datos=$categoria->delete_metodopago($id);
-            echo json_encode($datos);
+            if($datos=="ok"){
+                echo json_encode(array('status' => 'Estado Actualizado a Eliminado'));}
+            else{
+                echo json_encode($datos);}
         break;
     /*Fin Métodos para CRUD Metodo de pago*/
 
@@ -197,7 +206,10 @@ if($method == "OPTIONS") {
         case "Delusu":
             $id = $_GET["id"];
             $datos=$categoria->delete_usuario($id);
-            echo json_encode($datos);
+            if($datos=="ok"){
+                echo json_encode(array('status' => 'Estado Actualizado a Inactivo'));}
+            else{
+                echo json_encode($datos);}
         break;
     /*Fin Métodos para CRUD Usuarios*/
 
@@ -228,7 +240,10 @@ if($method == "OPTIONS") {
         case "DeltipU":
             $id = $_GET["id"];
             $datos=$categoria->delete_tipouser($id);
-            echo json_encode($datos);
+            if($datos=="ok"){
+                echo json_encode(array('status' => 'Eliminado'));}
+            else{
+                echo json_encode($datos);}
         break;
     /*Fin Métodos para CRUD Tipo de Usuario*/
 
@@ -264,7 +279,10 @@ if($method == "OPTIONS") {
     case "Delcat":
         $id = $_GET["id"];
         $datos=$categoria->delete_categoria($id);
-        echo json_encode($datos);
+        if($datos=="ok"){
+            echo json_encode(array('status' => 'Inactivo'));}
+        else{
+            echo json_encode($datos);}
     break;
 
     /*fin*/
@@ -299,7 +317,10 @@ if($method == "OPTIONS") {
     case "Delsubcat":
         $id = $_GET["id"];
         $datos=$categoria->delete_subcategoria($id);
-        echo json_encode($datos);
+        if($datos=="ok"){
+            echo json_encode(array('status' => 'Estado Actualizado a Inactivo'));}
+        else{
+            echo json_encode($datos);}
     break;
 /*Fin Métodos para CRUD Sub Categoria*/
        /*Suscripcion CRUD*/
@@ -333,7 +354,10 @@ if($method == "OPTIONS") {
     case "Delsus":
         $id = $_GET["id"];
         $datos=$categoria->delete_suscripcion($id);
-        echo json_encode($datos);
+        if($datos=="ok"){
+            echo json_encode(array('status' => 'Estado Actualizado a Inactivo'));}
+        else{
+            echo json_encode($datos);}
     break;
     /*fin*/
 

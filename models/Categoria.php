@@ -165,8 +165,10 @@
             estado = 'Eliminado'
              WHERE id_img = $id";
             $sql=$conectar->prepare($sql);
-            $sql->execute();
-            return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+            if($sql->execute()){
+                return "ok";
+             }
+            return $sql->errorInfo();
         }
 
             /* Fin CRUD Img*/
@@ -246,8 +248,10 @@
             parent::set_names();
             $sql="DELETE FROM pago WHERE id_metP = $id";
             $sql=$conectar->prepare($sql);
-            $sql->execute();
-            return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+            if($sql->execute()){
+                return "ok";
+             }
+            return $sql->errorInfo();
         }
         /* Fin CRUD Pago*/
 
@@ -336,8 +340,10 @@
             estado = 'Eliminado'
             WHERE id_metP = $id_metP";
             $sql=$conectar->prepare($sql);
-            $sql->execute();
-            return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+            if($sql->execute()){
+                return "ok";
+             }
+            return $sql->errorInfo();
         }
 
         /* Fin CRUD Metodo de Pago*/
@@ -410,8 +416,10 @@
             WHERE
             id_user = $id";
         $sql=$conectar->prepare($sql);
-        $sql->execute();
-        return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+        if($sql->execute()){
+            return "ok";
+         }
+        return $sql->errorInfo();
     }
     /* Fin CRUD Usuarios*/ 
 
@@ -464,8 +472,10 @@
         parent::set_names();
         $sql="DELETE FROM tipo_usuario WHERE id = $id";
         $sql=$conectar->prepare($sql);
-        $sql->execute();
-        return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+        if($sql->execute()){
+            return "ok";
+         }
+        return $sql->errorInfo();
     }
 
     /* Fin CRUD Tipo de Usuario*/
@@ -530,8 +540,10 @@ public function delete_categoria($id){
         WHERE
         id = $id";
     $sql=$conectar->prepare($sql);
-    $sql->execute();
-    return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+    if($sql->execute()){
+        return "ok";
+     }
+    return $sql->errorInfo();
 }
 /* Fin CRUD Categoria*/
 
@@ -596,8 +608,10 @@ public function delete_categoria($id){
             WHERE
             nombre_sub = $nombre_sub";
         $sql=$conectar->prepare($sql);
-        $sql->execute();
-        return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+        if($sql->execute()){
+            return "ok";
+         }
+        return $sql->errorInfo();
     }
     /* Fin CRUD Sub_Categoria*/
 
@@ -662,8 +676,10 @@ public function delete_categoria($id){
         $sql="UPDATE suscripcion SET  
         estado = 'Inactivo' WHERE id_sus = $id_sus";
         $sql=$conectar->prepare($sql);
-        $sql->execute();
-        return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+        if($sql->execute()){
+            return "ok";
+         }
+        return $sql->errorInfo();
     }
     /*fin*/
 
