@@ -12,11 +12,7 @@ if($method == "OPTIONS") {
 
     require_once("../config/conexion.php");
     require_once("../models/Categoria.php");
-    require_once("../models/Acceso.php");
-    require_once("../models/katy.php");
     $categoria = new Categoria();
-    $Katy = new katy();
-
     $body = json_decode(file_get_contents("php://input"), true);
 
     switch($_GET["Op"]){
