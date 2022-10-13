@@ -68,6 +68,7 @@ if($method == "OPTIONS") {
         case "GimgDes":
             $datos=$categoria->get_img_des();
             echo json_encode($datos);
+        break;
         case "GimgId":
             $id = $_GET["id"];
             $datos=$categoria->get_imgId($id);
@@ -91,6 +92,7 @@ if($method == "OPTIONS") {
             $id = $_GET["id"];
             $datos=$categoria->delete_img($id);
             echo json_encode($datos);
+        break;
     /*Fin Métodos para CRUD Img*/
 
     /*Inicio Métodos para CRUD Pago*/
@@ -125,6 +127,7 @@ if($method == "OPTIONS") {
             $id = $_GET["id"];
             $datos=$categoria->delete_pago($id);
             echo json_encode($datos);
+        break;
     /*Fin Métodos para CRUD Pago*/
 
     /*Inicio Métodos para CRUD Metodo de pago*/
@@ -161,6 +164,7 @@ if($method == "OPTIONS") {
             $id = $_GET["id"];
             $datos=$categoria->delete_metodopago($id);
             echo json_encode($datos);
+        break;
     /*Fin Métodos para CRUD Metodo de pago*/
 
     /*Inicio Métodos para CRUD Usuarios*/
@@ -297,6 +301,7 @@ if($method == "OPTIONS") {
         $id = $_GET["id"];
         $datos=$categoria->delete_subcategoria($id);
         echo json_encode($datos);
+    break;
 /*Fin Métodos para CRUD Sub Categoria*/
        /*Suscripcion CRUD*/
        case "Getsus":
@@ -330,6 +335,7 @@ if($method == "OPTIONS") {
         $id = $_GET["id"];
         $datos=$categoria->delete_suscripcion($id);
         echo json_encode($datos);
+    break;
     /*fin*/
 
 /*Inicio Métodos para CRU Acceso*/
@@ -374,6 +380,7 @@ case "Setbit":
         echo json_encode(array('status' => 'Guardado Correctamente'));}
     else{
         echo json_encode($datos);}
+break;
 /*Fin Métodos para CR Bitacora*/
     }
     
