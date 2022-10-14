@@ -130,26 +130,30 @@
             '$id_art',
             '$enlace',
             '$fecha',
-            '$hora')";
+            '$hora',
+            'Publicado')";
             $sql=$conectar->prepare($sql);
             if($sql->execute()){
                 return "ok";
              }
             return $sql->errorInfo();
         }
-        public function update_img($id_img,$id_art,$enlace,$fecha,$hora){
+        public function update_img($id_img,$id_art,$enlace,$fecha,$hora,$estado){
             $conectar= parent::conexion();
             parent::set_names();
             $sql=" UPDATE img SET
             (id_art,
             enlace,
             fecha,
-            hora)
+            hora
+            estado
+            )
             VALUES
             ('$id_art',
             '$enlace',
             '$fecha',
-            '$hora'
+            '$hora',
+            '$estado')
              WHERE 
             id_img = $id_img";
             $sql=$conectar->prepare($sql);
