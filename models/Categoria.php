@@ -124,7 +124,8 @@
             id_art,
             enlace,
             fecha,
-            hora)
+            hora,
+            estado)
             VALUES
             (NULL,
             '$id_art',
