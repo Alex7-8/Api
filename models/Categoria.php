@@ -224,11 +224,11 @@
             $conectar= parent::conexion();
             parent::set_names();
             $sql=" UPDATE pago SET
-            (nombtarjeta = '$nombtarjeta',
+            nombtarjeta = '$nombtarjeta',
             numtarjeta = '$numtarjeta',
             vencimiento = '$vencimiento',
             cvv = '$cvv',
-            estado = '$estado')
+            estado = '$estado'
             WHERE id_metP = $id_metP";
             $sql=$conectar->prepare($sql);
             if($sql->execute()){
