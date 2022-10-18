@@ -143,20 +143,12 @@
             $conectar= parent::conexion();
             parent::set_names();
             $sql=" UPDATE img SET
-            (id_art,
-            enlace,
-            fecha,
-            hora,
-            estado
-            )
-            VALUES
-            ('$id_art',
-            '$enlace',
-            '$fecha',
-            '$hora',
-            '$estado')
-             WHERE 
-            id_img = $id_img";
+            (id_art = '$id_art',
+            enlace  = '$enlace',
+            fecha = '$fecha',
+            hora = '$hora',
+            estado = '$estado')
+            WHERE id_img = $id_img";
             $sql=$conectar->prepare($sql);
             if($sql->execute()){
                 return "ok";
@@ -229,19 +221,12 @@
             $conectar= parent::conexion();
             parent::set_names();
             $sql=" UPDATE pago SET
-            (nombtarjeta,
-            numtarjeta,
-            vencimiento,
-            cvv,
-            estado)
-            VALUES
-            ('$nombtarjeta',
-            '$numtarjeta',
-            '$vencimiento',
-            '$cvv',
-            '$estado'
-             WHERE 
-            id_metP = $id_metP";
+            (nombtarjeta = '$nombtarjeta',
+            numtarjeta = '$numtarjeta',
+            vencimiento = '$vencimiento',
+            cvv = '$cvv',
+            estado = '$estado')
+            WHERE id_metP = $id_metP";
             $sql=$conectar->prepare($sql);
             if($sql->execute()){
                 return "ok";
