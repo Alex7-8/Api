@@ -81,7 +81,7 @@ if($method == "OPTIONS") {
                 echo json_encode($datos);}
         break;
         case "Upimg":
-            $datos=$categoria->update_img($body['id'],$body['id_art'],$body['enlace'],$body['fecha'],$body['hora'],$body['estado']);
+            $datos=$categoria->update_img($body['id_img'],$body['id_art'],$body['enlace'],$body['fecha'],$body['hora'],$body['estado']);
             if($datos=="ok"){
                 echo json_encode(array('status' => 'Actualizado Correctamente'));}
             else{
