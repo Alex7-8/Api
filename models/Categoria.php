@@ -139,7 +139,10 @@
              }
             return $sql->errorInfo();
         }
-        public function update_img($id_img,$id_art,$enlace,$fecha,$hora,$estado){
+        public function update_img($id_img,$id_art,$enlace,$estado){
+            date_default_timezone_set('America/Guatemala');
+            $fecha = date('Y-m-d');
+            $hora = date('H:i:s');
             $conectar= parent::conexion();
             parent::set_names();
             $sql=" UPDATE img SET
