@@ -146,12 +146,11 @@
             $conectar= parent::conexion();
             parent::set_names();
             $sql=" UPDATE img SET
-            (
             id_art = '$id_art',
             enlace  = '$enlace',
             fecha = '$fecha',
             hora = '$hora',
-            estado = '$estado')
+            estado = '$estado'
             WHERE id_img = $id_img";
             $sql=$conectar->prepare($sql);
             if($sql->execute()){
