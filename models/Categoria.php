@@ -146,7 +146,7 @@
             (id_art,
             enlace,
             fecha,
-            hora
+            hora,
             estado
             )
             VALUES
