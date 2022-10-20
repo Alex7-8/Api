@@ -150,7 +150,7 @@ if($method == "OPTIONS") {
             echo json_encode($datos);
         break;
         case "SetmetP":
-            $datos=$categoria->insert_metodopago($body['id_metP'],$body['id_user'],$body['nombre'],$body['apellido'],$body['telefono'],$body['correo'],$body['pais'],$body['direccion'],$body['nit'],$body['estado']);
+            $datos=$categoria->insert_metodopago($body['id_user'],$body['nombre'],$body['apellido'],$body['telefono'],$body['correo'],$body['pais'],$body['direccion'],$body['nit']);
             if($datos=="ok"){
                 echo json_encode(array('status' => 'Guardado Correctamente'));}
             else{
@@ -190,7 +190,7 @@ if($method == "OPTIONS") {
             echo json_encode($datos);
         break;
         case "Setusu":
-            $datos=$categoria->insert_usuario($body["nombre"],$body["apellido"],$body["correo"],$body["pass"],$body["tip_user"],$body["estadp"]);
+            $datos=$categoria->insert_usuario($body["nombre"],$body["apellido"],$body["correo"],$body["pass"],$body["tip_user"]);
             if($datos=="ok"){
                 echo json_encode(array('status' => 'Guardado Correctamente'));}
             else{

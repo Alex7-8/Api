@@ -278,7 +278,7 @@
             $sql->execute();
             return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
         }
-        public function insert_metodopago($id_metP,$id_user,$nombre,$apellido,$telefono,$correo,$pais,$direccion,$nit,$estado){
+        public function insert_metodopago($id_user,$nombre,$apellido,$telefono,$correo,$pais,$direccion,$nit){
             $conectar= parent::conexion();
             parent::set_names();
             $sql="INSERT INTO met_pago
@@ -293,7 +293,7 @@
             nit,
             estado)
             VALUES
-            ('$id_metP',
+            (
             '$id_user',
             '$nombre',
             '$apellido',
@@ -302,7 +302,7 @@
             '$pais',
             '$direccion',
             '$nit',
-            '$estado')";
+            'Activo')";
             $sql=$conectar->prepare($sql);
             if($sql->execute()){
                 return "ok";
@@ -373,12 +373,12 @@
         return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function insert_usuario($nombre,$apellido,$correo,$pass,$tip_user,$estado){
+    public function insert_usuario($nombre,$apellido,$correo,$pass,$tip_user){
         $conectar= parent::conexion();
         parent::set_names();
-        $sql="INSERT INTO articulos(nombre,apellido,correo,pass,tip_user,estado) 
+        $sql="INSERT INTO articulos(Id_user,nombre,apellido,correo,pass,tip_user,estado) 
         VALUES 
-        (NULL,'$nombre','$apellido','$correo','$pass','$pass','$tip_user','$estado');";
+        (NULL,'$nombre','$apellido','$correo','$pass','$pass','$tip_user','Activo');";
         $sql=$conectar->prepare($sql);
         if($sql->execute()){
             return "ok";
