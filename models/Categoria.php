@@ -116,7 +116,10 @@
             $sql->execute();
             return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
         }
-        public function insert_img($id_art,$enlace,$fecha,$hora){
+        public function insert_img($id_art,$enlace){
+            date_default_timezone_set('America/Guatemala');
+            $fecha = date('Y-m-d');
+            $hora = date('H:i:s');
             $conectar= parent::conexion();
             parent::set_names();
             $sql="INSERT INTO img
