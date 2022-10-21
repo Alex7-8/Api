@@ -9,7 +9,6 @@
             $sql->execute();
             return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
         }
-
         public function get_articulos_des(){
             $conectar= parent::conexion();
             parent::set_names();
@@ -379,7 +378,7 @@
     public function insert_usuario($nombre,$apellido,$correo,$pass,$tip_user){
         $conectar= parent::conexion();
         parent::set_names();
-        $sql="INSERT INTO articulos(Id_user,nombre,apellido,correo,pass,tip_user,estado) 
+        $sql="INSERT INTO usuario(Id_user,nombre,apellido,correo,pass,tip_user,estado) 
         VALUES 
         (NULL,'$nombre','$apellido','$correo','$pass','$pass','$tip_user','Activo');";
         $sql=$conectar->prepare($sql);
