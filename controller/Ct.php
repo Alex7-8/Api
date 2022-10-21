@@ -57,8 +57,6 @@ if($method == "OPTIONS") {
                 echo json_encode($datos);}
         break;
     /*Fin Métodos para CRUD Articulo*/
- 
-  
     /*Inicio Métodos para CRUD Img*/
         case "Gimg":
             $datos=$categoria->get_img();
@@ -129,7 +127,7 @@ if($method == "OPTIONS") {
             $id = $_GET["id"];
             $datos=$categoria->delete_pago($id);
             if($datos=="ok"){
-                echo json_encode(array('status' => 'Eliminado'));}
+                echo json_encode(array('status' => 'Estado Actualizado a Eliminado'));}
             else{
                 echo json_encode($datos);}
         break;
@@ -174,7 +172,6 @@ if($method == "OPTIONS") {
                 echo json_encode($datos);}
         break;
     /*Fin Métodos para CRUD Metodo de pago*/
-
     /*Inicio Métodos para CRUD Usuarios*/
         case "Gusu":
             $datos=$categoria->get_usuario();
