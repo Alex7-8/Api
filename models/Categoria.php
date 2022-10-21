@@ -380,7 +380,7 @@
         parent::set_names();
         $sql="INSERT INTO usuario(id_user,nombre,apellido,correo,pass,tip_user,estado) 
         VALUES 
-        (NULL,'$nombre','$apellido','$correo','$pass','$pass','$tip_user','Activo');";
+        (NULL,'$nombre','$apellido','$correo','$pass','$tip_user','Activo');";
         $sql=$conectar->prepare($sql);
         if($sql->execute()){
             return "ok";
