@@ -388,7 +388,7 @@
         return $sql->errorInfo();
     }
 
-    public function update_usuario($id,$nombre,$apellido,$correo,$pass,$tip_user,$estado){
+    public function update_usuario($id_user,$nombre,$apellido,$correo,$pass,$tip_user,$estado){
         $conectar= parent::conexion();
         parent::set_names();
         $sql="UPDATE usuario set
@@ -398,7 +398,7 @@
             pass = '$pass',
             tip_user = '$tip_user',
             estado = '$estado'
-            WHERE id_user = $id";
+            WHERE id_user = $id_user";
         $sql=$conectar->prepare($sql);
         if($sql->execute()){
             return "ok";
