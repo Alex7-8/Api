@@ -112,7 +112,7 @@ if($method == "OPTIONS") {
             echo json_encode($datos);
         break;
         case "Setpag":
-            $datos=$categoria->insert_pago($body['nombtarjeta'],$body['numtarjeta'],$body['vencimiento'],$body['cvv']);
+            $datos=$categoria->insert_pago($body['id_metP'],$body['nombtarjeta'],$body['numtarjeta'],$body['vencimiento'],$body['cvv']);
             if($datos=="ok"){
                 echo json_encode(array('status' => 'Guardado Correctamente'));}
             else{

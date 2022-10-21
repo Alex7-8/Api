@@ -59,7 +59,7 @@
         }
         
 
-        public function update_articulos($id,$nom_articulo,$sub_categoria,$descripcion,$estado,$autor,$fechayhora){
+        public function update_articulos($id,$nom_articulo,$sub_categoria,$descripcion,$estado,$autor){
             $conectar= parent::conexion();
             parent::set_names();
             $sql="UPDATE articulo set
@@ -187,7 +187,7 @@
         public function get_pago_Des(){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="SELECT * FROM pago WHERE estado = 'Inactivo'";
+            $sql="SELECT * FROM pago WHERE estado = 'Inactivo' || estado = 'Eliminado'";
             $sql=$conectar->prepare($sql);
             $sql->execute();
             return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
@@ -200,7 +200,7 @@
             $sql->execute();
             return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
         }
-        public function insert_pago($nombtarjeta,$numtarjeta,$vencimiento,$cvv){
+        public function insert_pago($id_metP,$nombtarjeta,$numtarjeta,$vencimiento,$cvv){
             $conectar= parent::conexion();
             parent::set_names();
             $sql="INSERT INTO pago
@@ -211,7 +211,7 @@
             cvv,
             estado)
             VALUES
-            (NULL,
+            ('$id_metP',
             '$nombtarjeta',
             '$numtarjeta',
             '$vencimiento',
@@ -243,7 +243,7 @@
             $conectar= parent::conexion();
             parent::set_names();
             $sql="UPDATE pago SET
-            estado = 'Inactivo'
+            estado = 'Eliminado'
              WHERE id_metP = $id";
             $sql=$conectar->prepare($sql);
             if($sql->execute()){
@@ -267,7 +267,7 @@
         public function get_metodopago_Des(){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="SELECT * FROM met_pago WHERE estado = 'Inactivo'";
+            $sql="SELECT * FROM met_pago WHERE estado = 'Inactivo' || estado = 'Eliminado'";
             $sql=$conectar->prepare($sql);
             $sql->execute();
             return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
