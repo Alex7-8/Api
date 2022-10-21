@@ -192,10 +192,10 @@
             $sql->execute();
             return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
         }
-        public function get_pagoId($id_metP){
+        public function get_pagoId($id){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="SELECT * FROM pago WHERE id_metP = $id_metP";
+            $sql="SELECT * FROM pago WHERE id_metP = $id";
             $sql=$conectar->prepare($sql);
             $sql->execute();
             return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);

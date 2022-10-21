@@ -108,7 +108,7 @@ if($method == "OPTIONS") {
         break;
         case "GpagId":
             $id = $_GET["id"];
-            $datos=$categoria->get_pagoId($id_metP);
+            $datos=$categoria->get_pagoId($id);
             echo json_encode($datos);
         break;
         case "Setpag":
