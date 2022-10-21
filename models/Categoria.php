@@ -200,7 +200,7 @@
             $sql->execute();
             return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
         }
-        public function insert_pago($nombtarjeta,$numtarjeta,$vencimiento,$cvv,$estado){
+        public function insert_pago($nombtarjeta,$numtarjeta,$vencimiento,$cvv){
             $conectar= parent::conexion();
             parent::set_names();
             $sql="INSERT INTO pago
@@ -216,7 +216,7 @@
             '$numtarjeta',
             '$vencimiento',
             '$cvv',
-            '$estado')";
+            'Activo')";
             $sql=$conectar->prepare($sql);
             if($sql->execute()){
                 return "ok";
@@ -242,7 +242,9 @@
         public function delete_pago($id){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="DELETE FROM pago WHERE id_metP = $id";
+            $sql="UPDATE pago SET
+            estado = 'Inactivo'
+             WHERE id_metP = $id";
             $sql=$conectar->prepare($sql);
             if($sql->execute()){
                 return "ok";
@@ -424,7 +426,15 @@
     public function get_tipouser(){
         $conectar= parent::conexion();
         parent::set_names();
-        $sql="SELECT * FROM tipo_usuario";
+        $sql="SELECT * FROM tipo_usuario WHERE estado = 'Activo'";
+        $sql=$conectar->prepare($sql);
+        $sql->execute();
+        return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function get_tipouserDes(){
+        $conectar= parent::conexion();
+        parent::set_names();
+        $sql="SELECT * FROM tipo_usuario WHERE estado = 'Inactivo'";
         $sql=$conectar->prepare($sql);
         $sql->execute();
         return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
@@ -443,20 +453,21 @@
         $fecha_sus = date("Y-m-d H:i:s");
         $conectar= parent::conexion();
         parent::set_names();
-        $sql="INSERT INTO tipo_usuario(id,rol,fecha_sus)) 
+        $sql="INSERT INTO tipo_usuario(id,rol,fecha_sus,estado) 
         VALUES 
-        (NULL,'$rol','$fecha_sus');";
+        (NULL,'$rol','$fecha_sus','Activo');";
         $sql=$conectar->prepare($sql);
         if($sql->execute()){
             return "ok";
         }
         return $sql->errorInfo();
     }
-    public function update_tipouser($id,$rol) {
+    public function update_tipouser($id,$rol,$estado) {
         $conectar= parent::conexion();
         parent::set_names();
         $sql="UPDATE articulos set
             rol = '$rol',
+            estado = '$estado'
             WHERE id = $id"; 
         $sql=$conectar->prepare($sql);
         if($sql->execute()){
@@ -467,7 +478,10 @@
     public function delete_tipouser($id){
         $conectar= parent::conexion();
         parent::set_names();
-        $sql="DELETE FROM tipo_usuario WHERE id = $id";
+        $sql="UPDATE tipo_usuario set
+            estado = 'Inactivo'
+            WHERE
+            id = $id";
         $sql=$conectar->prepare($sql);
         if($sql->execute()){
             return "ok";
@@ -503,12 +517,12 @@ public function get_categoria_x_id($id){
     $sql->execute();
     return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
 }
-public function insert_categoria($nombre,$descripcion,$estado){
+public function insert_categoria($nombre,$descripcion){
     $conectar= parent::conexion();
     parent::set_names();
     $sql="INSERT INTO categoria(nombre_categoria,descripcion,estado) 
     VALUES 
-    ('$nombre','$descripcion','$estado');";
+    ('$nombre','$descripcion','Activo');";
     $sql=$conectar->prepare($sql);
     if($sql->execute()){
         return "ok";
@@ -570,12 +584,12 @@ public function delete_categoria($id){
         $sql->execute();
         return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
     }
-    public function insert_subcategoria($nombre_sub,$id_categoria,$descripcion,$estado){
+    public function insert_subcategoria($nombre_sub,$id_categoria,$descripcion){
         $conectar= parent::conexion();
         parent::set_names();
         $sql="INSERT INTO sub_categoria(nombre_sub,id_categoria,descripcion,estado) 
         VALUES 
-        ('$nombre_sub','$id_categoria','$descripcion','$estado');";
+        ('$nombre_sub','$id_categoria','$descripcion','Activo');";
         $sql=$conectar->prepare($sql);
         if($sql->execute()){
             return "ok";
@@ -640,14 +654,14 @@ public function delete_categoria($id){
         return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
 
     }
-    public function insert_suscripcion($id_sus,$estado){
+    public function insert_suscripcion($id_sus){
         date_default_timezone_set('America/Guatemala');
         $fecha_sus = date('Y-m-d');
         $conectar= parent::conexion();
         parent::set_names();
         $sql="INSERT INTO suscripcion(id_sus,fecha_sus,estado) 
         VALUES 
-        ('$id_sus','$fecha_sus','$estado');";
+        ('$id_sus','$fecha_sus','Activo');";
         $sql=$conectar->prepare($sql);
         if($sql->execute()){
             return "ok";

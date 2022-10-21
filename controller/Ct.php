@@ -112,7 +112,7 @@ if($method == "OPTIONS") {
             echo json_encode($datos);
         break;
         case "Setpag":
-            $datos=$categoria->insert_pago($body['nombtarjeta'],$body['numtarjeta'],$body['vencimiento'],$body['cvv'],$body['estado']);
+            $datos=$categoria->insert_pago($body['nombtarjeta'],$body['numtarjeta'],$body['vencimiento'],$body['cvv']);
             if($datos=="ok"){
                 echo json_encode(array('status' => 'Guardado Correctamente'));}
             else{
@@ -218,6 +218,9 @@ if($method == "OPTIONS") {
             $datos=$categoria->get_tipouser();
             echo json_encode($datos);
         break;
+        case "GtipUDes":
+            $datos=$categoria->get_tipouserDes();
+            echo json_encode($datos);
         case "GtipUId":
             $id = $_GET["id"];
             $datos=$categoria->get_tipouser_x_id($id);
@@ -231,7 +234,7 @@ if($method == "OPTIONS") {
                 echo json_encode($datos);}
         break;
         case "UptipU":
-            $datos=$categoria->update_tipouser($body['id'],$body['rol']);
+            $datos=$categoria->update_tipouser($body['id'],$body['rol'],$body['estado']);
             if($datos=="ok"){
                 echo json_encode(array('status' => 'Actualizado Correctamente'));}
             else{
@@ -262,7 +265,7 @@ if($method == "OPTIONS") {
         echo json_encode($datos);
     break;
     case "Setcat":
-        $datos=$categoria->insert_categoria($body["nombre"],$body["descripcion"],$body["estado"]);
+        $datos=$categoria->insert_categoria($body["nombre"],$body["descripcion"]);
         if($datos=="ok"){
             echo json_encode(array('status' => 'Guardado Correctamente'));}
         else{
@@ -338,7 +341,7 @@ if($method == "OPTIONS") {
         echo json_encode($datos);
     break;
     case "Setsus":
-        $datos=$categoria->insert_suscripcion($body['id_sus'],$body['fecha_sus'],$body["estado"]);
+        $datos=$categoria->insert_suscripcion($body['id_sus']);
         if($datos=="ok"){
             echo json_encode(array('status' => 'Guardado Correctamente'));}
         else{
