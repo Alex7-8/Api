@@ -294,6 +294,7 @@
             estado)
             VALUES
             (
+            NULL,
             '$id_user',
             '$nombre',
             '$apellido',
