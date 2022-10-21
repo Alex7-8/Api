@@ -259,7 +259,7 @@ if($method == "OPTIONS") {
         $datos=$categoria->get_categoria_des();
         echo json_encode($datos);
     break;
-    case "Getctid":
+    case "GetctId":
         $id = $_GET["id"];
         $datos=$categoria->get_categoria_x_id($id);
         echo json_encode($datos);
