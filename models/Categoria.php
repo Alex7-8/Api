@@ -200,7 +200,7 @@
             $sql->execute();
             return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
         }
-        public function insert_pago($id_metP,$nombtarjeta,$numtarjeta,$vencimiento,$cvv){
+        public function insert_pago($nombtarjeta,$numtarjeta,$vencimiento,$cvv){
             $conectar= parent::conexion();
             parent::set_names();
             $sql="INSERT INTO pago
@@ -211,7 +211,7 @@
             cvv,
             estado)
             VALUES
-            ('$id_metP',
+            (NULL,
             '$nombtarjeta',
             '$numtarjeta',
             '$vencimiento',
