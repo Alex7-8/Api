@@ -519,7 +519,7 @@ public function get_categoria_x_id($id){
 public function insert_categoria($nombre,$descripcion){
     $conectar= parent::conexion();
     parent::set_names();
-    $sql="INSERT INTO categoria(nombre_categoria,descripcion,estado) 
+    $sql="INSERT INTO categoria(nombre,descripcion,estado) 
     VALUES 
     ('$nombre','$descripcion','Activo');";
     $sql=$conectar->prepare($sql);
@@ -532,7 +532,7 @@ public function update_categoria($id,$nombre,$descripcion,$estado){
     $conectar= parent::conexion();
     parent::set_names();
     $sql="UPDATE categoria set
-        nombre_categoria = '$nombre',
+        nombre = '$nombre',
         descripcion = '$descripcion',
         estado = '$estado'
         WHERE id = $id";
