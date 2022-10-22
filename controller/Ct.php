@@ -399,7 +399,7 @@ case "GetbitId":
     echo json_encode($datos);
 break;
 case "Setbit":
-    $datos=$categoria->insert_bitacora($body['id_art'],$body['id_user'],$body['cambios'],$body['fecha_mod']);
+    $datos=$categoria->insert_bitacora($body['id_art'],$body['id_user'],$body['cambios']);
     if($datos=="ok"){
         echo json_encode(array('status' => 'Guardado Correctamente'));}
     else{

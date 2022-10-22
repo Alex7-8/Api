@@ -767,7 +767,9 @@
         $sql->execute();
      return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
     }
-    public function insert_bitacora($id_art,$id_user,$cambios,$fecha_mod){
+    public function insert_bitacora($id_art,$id_user,$cambios){
+        date_default_timezone_set('America/Guatemala');
+        $fecha_mod = date('Y-m-d H:i:s');
         $conectar = parent::conexion();
         parent::set_names();
         $sql="INSERT INTO 
