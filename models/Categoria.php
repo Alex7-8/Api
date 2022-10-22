@@ -603,7 +603,7 @@ public function delete_categoria($id){
             id_categoria = '$id_categoria',
             descripcion = '$descripcion',
             estado = '$estado'
-            WHERE nombre_sub = $nombre_sub";
+            WHERE nombre_sub = '$nombre_sub'";
         $sql=$conectar->prepare($sql);
         if($sql->execute()){
             return "ok";
