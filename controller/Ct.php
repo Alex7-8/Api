@@ -248,7 +248,7 @@ if($method == "OPTIONS") {
         break;
     /*Fin Métodos para CRUD Tipo de Usuario*/
 
-    /*Categoria CRUD*/
+/*Categoria CRUD*/
     case "Getcat":
         $datos=$categoria->get_categoria();
         echo json_encode($datos);
@@ -286,7 +286,7 @@ if($method == "OPTIONS") {
             echo json_encode($datos);}
     break;
 
-    /*fin*/
+/*fin*/
 /*Inicio Métodos para CRUD Sub Categoria*/
     case "Gsubcat":
         $datos=$categoria->get_subcategoria();
@@ -324,8 +324,8 @@ if($method == "OPTIONS") {
             echo json_encode($datos);}
     break;
 /*Fin Métodos para CRUD Sub Categoria*/
-       /*Suscripcion CRUD*/
-       case "Getsus":
+/*Suscripcion CRUD*/
+    case "Getsus":
         $datos=$categoria->get_suscripcion();
         echo json_encode($datos);
     break;

@@ -712,7 +712,7 @@
         parent::set_names();
         $sql="INSERT INTO 
         acceso(
-        id
+        id,
         id_user,
         id_art,
         direccion,
