@@ -464,7 +464,7 @@
     public function update_tipouser($id,$rol,$estado) {
         $conectar= parent::conexion();
         parent::set_names();
-        $sql="UPDATE articulos set
+        $sql="UPDATE tipo_usuario set
             rol = '$rol',
             estado = '$estado'
             WHERE id = $id"; 
