@@ -586,7 +586,7 @@ public function delete_categoria($id){
     public function insert_subcategoria($nombre_sub,$id_categoria,$descripcion){
         $conectar= parent::conexion();
         parent::set_names();
-        $sql="INSERT INTO sub_categoria(nombre_sub,id_categoria,descripcion,estado) 
+        $sql="INSERT INTO subcategoria(nombre_sub,id_categoria,descripcion,estado) 
         VALUES 
         ('$nombre_sub','$id_categoria','$descripcion','Activo');";
         $sql=$conectar->prepare($sql);
@@ -598,7 +598,7 @@ public function delete_categoria($id){
     public function update_subcategoria($nombre_sub,$id_categoria,$descripcion,$estado){
         $conectar= parent::conexion();
         parent::set_names();
-        $sql="UPDATE sub_categoria set
+        $sql="UPDATE subcategoria set
             nombre_sub = '$nombre_sub',
             id_categoria = '$id_categoria',
             descripcion = '$descripcion',
@@ -613,7 +613,7 @@ public function delete_categoria($id){
     public function delete_subcategoria($nomb){
         $conectar= parent::conexion();
         parent::set_names();
-        $sql="UPDATE sub_categoria set
+        $sql="UPDATE subcategoria set
             estado = 'Inactivo'
             WHERE
             nombre_sub = $nomb";
