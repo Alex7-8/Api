@@ -302,7 +302,7 @@ if($method == "OPTIONS") {
         echo json_encode($datos);
     break;
     case "Setsubcat":
-        $datos=$categoria->insert_subcategoria($body['nombre_sub'],$body['id_categoria'],$body["descripcion"],$body["estado"]);
+        $datos=$categoria->insert_subcategoria($body['nombre_sub'],$body['id_categoria'],$body["descripcion"]);
         if($datos=="ok"){
             echo json_encode(array('status' => 'Guardado Correctamente'));}
         else{

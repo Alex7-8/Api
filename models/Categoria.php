@@ -1,6 +1,6 @@
 <?php
     class Categoria extends Conectar{
-        /* Inicio CRUD Articulo*/
+/* Inicio CRUD Articulo*/
         public function get_articulos(){
             $conectar= parent::conexion();
             parent::set_names();
@@ -88,25 +88,25 @@
              }
             return $sql->errorInfo();
         }
-        /* Fin CRUD Articulo*/
+/* Fin CRUD Articulo*/
 
-        /* Inicio CRUD Img*/
-        public function get_img(){
-            $conectar= parent::conexion();
-            parent::set_names();
-            $sql="SELECT * FROM img WHERE estado = 'Publicado' ";
-            $sql=$conectar->prepare($sql);
-            $sql->execute();
-            return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
-        }
-        public function get_img_Des(){
+/* Inicio CRUD Img*/
+ public function get_img(){
+ $conectar= parent::conexion();
+ parent::set_names();
+ $sql="SELECT * FROM img WHERE estado = 'Publicado' ";
+ $sql=$conectar->prepare($sql);
+ $sql->execute();
+ return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+ }
+ public function get_img_Des(){
             $conectar= parent::conexion();
             parent::set_names();
             $sql="SELECT * FROM img WHERE estado = 'Eliminado' ";
             $sql=$conectar->prepare($sql);
             $sql->execute();
             return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
-        }
+ }
         public function get_imgId($id){
             $conectar= parent::conexion();
             parent::set_names();
@@ -173,8 +173,8 @@
             return $sql->errorInfo();
         }
 
-            /* Fin CRUD Img*/
-        /* Inicio CRUD Pago*/
+/* Fin CRUD Img*/
+/* Inicio CRUD Pago*/
         public function get_pago(){
             $conectar= parent::conexion();
             parent::set_names();
@@ -250,11 +250,8 @@
              }
             return $sql->errorInfo();
         }
-        /* Fin CRUD Pago*/
-
-
-
-        /* Inicio CRUD Metodo de Pago*/
+/* Fin CRUD Pago*/
+/* Inicio CRUD Metodo de Pago*/
         public function get_metodopago(){
             $conectar= parent::conexion();
             parent::set_names();
@@ -344,9 +341,8 @@
             return $sql->errorInfo();
         }
 
-        /* Fin CRUD Metodo de Pago*/
-
-        /* Inicio CRUD Usuarios*/ 
+/* Fin CRUD Metodo de Pago*/
+/* Inicio CRUD Usuarios*/ 
     public function get_usuario(){
         $conectar= parent::conexion();
         parent::set_names();
@@ -419,9 +415,9 @@
          }
         return $sql->errorInfo();
     }
-    /* Fin CRUD Usuarios*/ 
+/* Fin CRUD Usuarios*/ 
 
-    /* Inicio CRUD Tipo de Usuario*/
+/* Inicio CRUD Tipo de Usuario*/
     public function get_tipouser(){
         $conectar= parent::conexion();
         parent::set_names();
@@ -488,9 +484,9 @@
         return $sql->errorInfo();
     }
 
-    /* Fin CRUD Tipo de Usuario*/
+/* Fin CRUD Tipo de Usuario*/
 
- /* Inicio CRUD Categoria*/
+/* Inicio CRUD Categoria*/
  public function get_categoria(){
     $conectar= parent::conexion();
     parent::set_names();
@@ -498,16 +494,16 @@
     $sql=$conectar->prepare($sql);
     $sql->execute();
     return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
-}
-public function get_categoria_des(){
+  }
+ public function get_categoria_des(){
     $conectar= parent::conexion();
     parent::set_names();
     $sql="SELECT * FROM categoria WHERE estado = 'Inactivo'";
     $sql=$conectar->prepare($sql);
     $sql->execute();
     return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
-}
-public function get_categoria_x_id($id){
+ }
+ public function get_categoria_x_id($id){
     $conectar= parent::conexion();
     parent::set_names();
     $sql="SELECT * FROM categoria WHERE id = ?";
@@ -515,8 +511,8 @@ public function get_categoria_x_id($id){
     $sql->bindValue(1, $id);
     $sql->execute();
     return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
-}
-public function insert_categoria($nombre,$descripcion){
+ }
+ public function insert_categoria($nombre,$descripcion){
     $conectar= parent::conexion();
     parent::set_names();
     $sql="INSERT INTO categoria(nombre,descripcion,estado) 
@@ -527,8 +523,8 @@ public function insert_categoria($nombre,$descripcion){
         return "ok";
     }
     return $sql->errorInfo();
-}
-public function update_categoria($id,$nombre,$descripcion,$estado){
+ }
+ public function update_categoria($id,$nombre,$descripcion,$estado){
     $conectar= parent::conexion();
     parent::set_names();
     $sql="UPDATE categoria set
@@ -541,8 +537,8 @@ public function update_categoria($id,$nombre,$descripcion,$estado){
         return "ok";
      }
     return $sql->errorInfo();
-}
-public function delete_categoria($id){
+ }
+ public function delete_categoria($id){
     $conectar= parent::conexion();
     parent::set_names();
     $sql="UPDATE categoria set
@@ -554,10 +550,10 @@ public function delete_categoria($id){
         return "ok";
      }
     return $sql->errorInfo();
-}
+ }
 /* Fin CRUD Categoria*/
 
-    /* Inicio CRUD Sub_Categoria*/
+/* Inicio CRUD Sub_Categoria*/
     public function get_subcategoria(){
         $conectar= parent::conexion();
         parent::set_names();
@@ -623,10 +619,10 @@ public function delete_categoria($id){
          }
         return $sql->errorInfo()+$nomb;
     }
-    /* Fin CRUD Sub_Categoria*/
+/* Fin CRUD Sub_Categoria*/
 
    
-     /*suscripcion*/
+/*suscripcion*/
     public function get_suscripcion(){
         $conectar= parent::conexion();
         parent::set_names();
@@ -691,9 +687,9 @@ public function delete_categoria($id){
          }
         return $sql->errorInfo();
     }
-    /*fin*/
+/*fin*/
 
-    /* Inicio CR Acceso*/
+/* Inicio CR Acceso*/
     public function get_acceso(){
         $conectar= parent::conexion();
         parent::set_names();
@@ -751,9 +747,9 @@ public function delete_categoria($id){
         return $sql->errorInfo();
     }
     
-    /* Fin CRU Acceso*/
+/* Fin CRU Acceso*/
     
-    /* Inicio CR Bitacora*/
+/* Inicio CR Bitacora*/
     public function get_bitacora(){
         $conectar= parent::conexion();
         parent::set_names();
@@ -793,7 +789,7 @@ public function delete_categoria($id){
          return $sql->errorInfo(); 
     }
 
-    /* Fin CR Bitacora*/
+/* Fin CR Bitacora*/
 
 }
 
