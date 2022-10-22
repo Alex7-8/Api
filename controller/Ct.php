@@ -296,9 +296,9 @@ if($method == "OPTIONS") {
         $datos=$categoria->get_subcategoria_des();
         echo json_encode($datos);
     break;
-    case "GsubcatId":
-        $id = $_GET["id"];
-        $datos=$categoria->get_subcategoria_x_id($id);
+    case "GsubcatNomb":
+        $nomb = $_GET["nomb"];
+        $datos=$categoria->get_subcategoria_x_id($nomb);
         echo json_encode($datos);
     break;
     case "Setsubcat":

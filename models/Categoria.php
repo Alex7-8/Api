@@ -561,7 +561,7 @@ public function delete_categoria($id){
     public function get_subcategoria(){
         $conectar= parent::conexion();
         parent::set_names();
-        $sql="SELECT * FROM sub_categoria WHERE estado = 'Activo'";
+        $sql="SELECT * FROM subcategoria WHERE estado = 'Activo'";
         $sql=$conectar->prepare($sql);
         $sql->execute();
         return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
@@ -569,17 +569,17 @@ public function delete_categoria($id){
     public function get_subcategoria_des(){
         $conectar= parent::conexion();
         parent::set_names();
-        $sql="SELECT * FROM sub_categoria WHERE estado = 'Inactivo'";
+        $sql="SELECT * FROM subcategoria WHERE estado = 'Inactivo'";
         $sql=$conectar->prepare($sql);
         $sql->execute();
         return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
     }
-    public function get_subcategoria_x_id($id){
+    public function get_subcategoria_x_id($nomb){
         $conectar= parent::conexion();
         parent::set_names();
-        $sql="SELECT * FROM sub_categoria WHERE nombre_sub = ?";
+        $sql="SELECT * FROM subcategoria WHERE nombre_sub = ?";
         $sql=$conectar->prepare($sql);
-        $sql->bindValue(1, $id);
+        $sql->bindValue(1, $nomb);
         $sql->execute();
         return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
     }
