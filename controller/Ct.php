@@ -280,7 +280,7 @@ if($method == "OPTIONS") {
         $id = $_GET["id"];
         $datos=$categoria->delete_categoria($id);
         if($datos=="ok"){
-            echo json_encode(array('status' => 'Inactivo'));}
+            echo json_encode(array('status' => 'Estado Actualizado a Inactivo'));}
         else{
             echo json_encode($datos);}
     break;
