@@ -253,11 +253,11 @@ if($method == "OPTIONS") {
         $datos=$categoria->get_categoria();
         echo json_encode($datos);
     break;
-    case "GcatDes":
+    case "GetcatDes":
         $datos=$categoria->get_categoria_des();
         echo json_encode($datos);
     break;
-    case "GetctId":
+    case "GetcatId":
         $id = $_GET["id"];
         $datos=$categoria->get_categoria_x_id($id);
         echo json_encode($datos);
@@ -333,7 +333,7 @@ if($method == "OPTIONS") {
         $datos=$categoria->get_suscripcion_des();
         echo json_encode($datos);
     break;
-    case "Getsusid":
+    case "GetsusId":
         $id = $_GET["id"];
         $datos=$categoria->get_suscripcion_x_id($id);
         echo json_encode($datos);
@@ -367,7 +367,7 @@ case "Getacc":
     $datos=$categoria->get_acceso();
     echo json_encode($datos);
 break;
-case "Getaccid":
+case "GetaccId":
     $id = $_GET["id"];
     $datos=$categoria->get_acceso_x_id($id);
     echo json_encode($datos);
@@ -393,7 +393,7 @@ case "Getbit":
     $datos=$categoria->get_bitacora();
     echo json_encode($datos);
 break;
-case "Getbitid":
+case "GetbitId":
     $id = $_GET["id"];
     $datos=$categoria->get_bitacora_x_id($id);
     echo json_encode($datos);
