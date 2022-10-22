@@ -218,6 +218,7 @@ if($method == "OPTIONS") {
         case "GtipUDes":
             $datos=$categoria->get_tipouserDes();
             echo json_encode($datos);
+        break;
         case "GtipUId":
             $id = $_GET["id"];
             $datos=$categoria->get_tipouser_x_id($id);

@@ -433,7 +433,7 @@
     public function get_tipouserDes(){
         $conectar= parent::conexion();
         parent::set_names();
-        $sql="SELECT * FROM tipo_usuario WHERE estado = 'Activo'";
+        $sql="SELECT * FROM tipo_usuario WHERE estado = 'Inactivo'";
         $sql=$conectar->prepare($sql);
         $sql->execute();
         return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
