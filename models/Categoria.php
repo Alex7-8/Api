@@ -610,13 +610,13 @@ public function delete_categoria($id){
          }
         return $sql->errorInfo();
     }
-    public function delete_subcategoria($nombre_sub){
+    public function delete_subcategoria($nomb){
         $conectar= parent::conexion();
         parent::set_names();
         $sql="UPDATE sub_categoria set
             estado = 'Inactivo'
             WHERE
-            nombre_sub = $nombre_sub";
+            nombre_sub = $nomb";
         $sql=$conectar->prepare($sql);
         if($sql->execute()){
             return "ok";
