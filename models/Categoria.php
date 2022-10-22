@@ -616,7 +616,7 @@ public function delete_categoria($id){
         $sql="UPDATE subcategoria set
             estado = 'Inactivo'
             WHERE
-            nombre_sub = $nomb";
+            nombre_sub = '$nomb'";
         $sql=$conectar->prepare($sql);
         if($sql->execute()){
             return "ok";
