@@ -297,7 +297,8 @@ if($method == "OPTIONS") {
         echo json_encode($datos);
     break;
     case "GsubcatNomb":
-        $datos=$categoria->get_subcategoria_x_id($body["nomb"]);
+        $nomb = $_GET["nomb"];
+        $datos=$categoria->get_subcategoria_x_id($nomb);
         echo json_encode($datos);
     break;
     case "Setsubcat":
@@ -315,7 +316,7 @@ if($method == "OPTIONS") {
             echo json_encode($datos);}
     break;
     case "Delsubcat":
-        $nomb = $_POST["nomb"];
+        $nomb = $_GET["nomb"];
         $datos=$categoria->delete_subcategoria($nomb);
         if($datos=="ok"){
             echo json_encode(array('status' => 'Estado Actualizado a Inactivo'));}

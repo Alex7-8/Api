@@ -622,6 +622,7 @@ public function delete_categoria($id){
             return "ok";
          }
         return $sql->errorInfo();
+        return $nomb;
     }
     /* Fin CRUD Sub_Categoria*/
 
