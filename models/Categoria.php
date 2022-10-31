@@ -557,15 +557,10 @@
 public function get_categor($nombre){
     $conectar= parent::conexion();
     parent::set_names();
-    $sql="SELECT id_categoria FROM subcategoria WHERE nombre_sub = '$nombre'";
+    $sql="SELECT nombre FROM categoria INNER JOIN subcategoria ON categoria.id = subcategoria.id_categoria where nombre_sub='$nombre'";
     $sql=$conectar->prepare($sql);
     $sql->execute();
-    $id=$sql->fetchAll(PDO::FETCH_ASSOC);
-    
-    $sql2="SELECT nombre FROM categoria WHERE id = '$id'";
-    $sql2=$conectar->prepare($sql2);
-    $sql2->execute();
-    return $resultado=$sql2->fetchAll(PDO::FETCH_ASSOC);
+    return $retorno=$sql->fetchAll(PDO::FETCH_ASSOC);
 }
 
     public function get_subcategoria(){
