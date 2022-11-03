@@ -555,6 +555,15 @@
 /* Fin CRUD Categoria*/
 
 /* Inicio CRUD Sub_Categoria*/
+public function get_categor($nombre){
+    $conectar= parent::conexion();
+    parent::set_names();
+    $sql="SELECT nombre FROM categoria INNER JOIN subcategoria ON categoria.id = subcategoria.id_categoria where nombre_sub='$nombre'";
+    $sql=$conectar->prepare($sql);
+    $sql->execute();
+    return $retorno=$sql->fetchAll(PDO::FETCH_ASSOC);
+}
+
     public function get_subcategoria(){
         $conectar= parent::conexion();
         parent::set_names();

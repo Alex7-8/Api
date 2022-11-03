@@ -288,6 +288,13 @@ if($method == "OPTIONS") {
 
 /*fin*/
 /*Inicio Métodos para CRUD Sub Categoria*/
+
+// Metodo para obtener nombre de la categoria
+    case "Gcatnom":
+        $nomb = $_GET["nomb"];
+        $datos=$categoria->get_categor($nomb);
+        echo json_encode($datos);
+    break;
     case "Gsubcat":
         $datos=$categoria->get_subcategoria();
         echo json_encode($datos);
