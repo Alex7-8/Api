@@ -187,14 +187,14 @@ if($method == "OPTIONS") {
             echo json_encode($datos);
         break;
         case "Setusu":
-            $datos=$categoria->insert_usuario($body["nombre"],$body["apellido"],$body["correo"],$body["pass"],$body["tip_user"]);
+            $datos=$categoria->insert_usuario($body["nombre"],$body["apellido"],$body["correo"],$body["pass"],$body["tip_user"],$body["img"]);
             if($datos=="ok"){
                 echo json_encode(array('status' => 'Guardado Correctamente'));}
             else{
                 echo json_encode($datos);}
         break;
         case "Upusu":
-            $datos=$categoria->update_usuario($body["id_user"],$body["nombre"],$body["apellido"],$body["correo"],$body["pass"],$body["tip_user"],$body["estadp"],$body["fechayhora"]);
+            $datos=$categoria->update_usuario($body["id_user"],$body["nombre"],$body["apellido"],$body["correo"],$body["pass"],$body["tip_user"],$body["estado"],$body["img"]);
             if($datos=="ok"){
                 echo json_encode(array('status' => 'Actualizado Correctamente'));}
             else{

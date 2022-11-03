@@ -371,12 +371,12 @@
         return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function insert_usuario($nombre,$apellido,$correo,$pass,$tip_user){
+    public function insert_usuario($nombre,$apellido,$correo,$pass,$tip_user,$img){
         $conectar= parent::conexion();
         parent::set_names();
-        $sql="INSERT INTO usuario(id_user,nombre,apellido,correo,pass,tip_user,estado) 
+        $sql="INSERT INTO usuario(id_user,nombre,apellido,correo,pass,tip_user,estado,img) 
         VALUES 
-        (NULL,'$nombre','$apellido','$correo','$pass','$tip_user','Activo');";
+        (NULL,'$nombre','$apellido','$correo','$pass','$tip_user','Activo','$img');";
         $sql=$conectar->prepare($sql);
         if($sql->execute()){
             return "ok";
@@ -384,7 +384,7 @@
         return $sql->errorInfo();
     }
 
-    public function update_usuario($id_user,$nombre,$apellido,$correo,$pass,$tip_user,$estado){
+    public function update_usuario($id_user,$nombre,$apellido,$correo,$pass,$tip_user,$estado,$img){
         $conectar= parent::conexion();
         parent::set_names();
         $sql="UPDATE usuario set
@@ -393,7 +393,8 @@
             correo = '$correo',
             pass = '$pass',
             tip_user = '$tip_user',
-            estado = '$estado'
+            estado = '$estado',
+            img = '$img'
             WHERE id_user = $id_user";
         $sql=$conectar->prepare($sql);
         if($sql->execute()){
