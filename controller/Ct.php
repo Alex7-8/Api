@@ -21,6 +21,10 @@ if($method == "OPTIONS") {
             $datos=$categoria->get_articulos();
             echo json_encode($datos);
         break;
+        case "GartProc":
+            $datos=$categoria->get_articulos_proc();
+            echo json_encode($datos);
+        break;
         case "GartDes":
             $datos=$categoria->get_articulos_des();
             echo json_encode($datos);
@@ -53,10 +57,19 @@ if($method == "OPTIONS") {
             else{
                 echo json_encode($datos);}
         break;
-
+        
         case "Delart":
             $id = $_GET["id"];
             $datos=$categoria->delete_articulos($id);
+            if($datos=="ok"){
+                echo json_encode(array('status' => 'Estado Actualizado a Eliminado'));}
+            else{
+                echo json_encode($datos);}
+        break;
+        case "DelartProc":
+            $id = $_GET["id"];
+            $idimg = $_GET["idimg"];
+            $datos=$categoria->delete_articulos_proc($id,$id_img);
             if($datos=="ok"){
                 echo json_encode(array('status' => 'Estado Actualizado a Eliminado'));}
             else{

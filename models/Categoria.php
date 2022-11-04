@@ -4,7 +4,7 @@
         public function get_articulos(){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="SELECT * FROM articulo WHERE estado = 'Publicado' ";
+            $sql="select art.id,art.nom_articulo,art.sub_categoria,art.descripcion,art.estado,art.autor,art.fechayhora,ig.id_img,ig.id_art,ig.enlace,ig.fecha,ig.hora,ig.estado,usu.id_user,usu.nombre,usu.apellido from articulo art INNER JOIN img ig, usuario usu where art.estado = 'Publicado' and ig.id_art=art.id and usu.id_user = art.autor";
             $sql=$conectar->prepare($sql);
             $sql->execute();
             return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
@@ -57,6 +57,45 @@
             return $sql->errorInfo();
         }
 
+        
+        public function update_articulos($id,$nom_articulo,$sub_categoria,$descripcion,$estado,$autor){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="UPDATE articulo set
+                nom_articulo = '$nom_articulo',
+                sub_categoria = '$sub_categoria',
+                descripcion = '$descripcion',
+                estado = '$estado',
+                autor = $autor
+                WHERE id = $id";
+            $sql=$conectar->prepare($sql);
+            if($sql->execute()){
+                return "ok";
+             }
+            return $sql->errorInfo();
+        }
+        public function delete_articulos($id){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="UPDATE articulo set
+                estado = 'Eliminado'
+                WHERE
+                id = $id";
+            $sql=$conectar->prepare($sql);
+            if($sql->execute()){
+                return "ok";
+             }
+            return $sql->errorInfo();
+        }
+
+        public function get_articulos_proc(){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="select art.id,art.nom_articulo,art.sub_categoria,art.descripcion,art.estado,art.autor,art.fechayhora,ig.id_img,ig.id_art,ig.enlace,ig.fecha,ig.hora,ig.estado,usu.id_user,usu.nombre,usu.apellido from articulo art INNER JOIN img ig, usuario usu where art.estado = 'Publicado' and ig.id_art=art.id and usu.id_user = art.autor";
+            $sql=$conectar->prepare($sql);
+            $sql->execute();
+            return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+        }
         public function insert_articulos_proc($nom_articulo,$sub_categoria,$descripcion,$estado,$autor,$enlace){
             date_default_timezone_set('America/Guatemala');
             $conectar= parent::conexion();
@@ -76,34 +115,13 @@
             $sql->bindValue(7, $enlace);
             $sql->bindValue(8, $fechaimg);
             $sql->bindValue(9, $hora);
-            $sql->bindValue(10,'Publicado');
-
-
+            $sql->bindValue(10, $estado);
             if($sql->execute()){
                 return "ok";
              }
             return $sql->errorInfo();
         }
-        
-
-        public function update_articulos($id,$nom_articulo,$sub_categoria,$descripcion,$estado,$autor){
-            $conectar= parent::conexion();
-            parent::set_names();
-            $sql="UPDATE articulo set
-                nom_articulo = '$nom_articulo',
-                sub_categoria = '$sub_categoria',
-                descripcion = '$descripcion',
-                estado = '$estado',
-                autor = $autor
-                WHERE id = $id";
-            $sql=$conectar->prepare($sql);
-            if($sql->execute()){
-                return "ok";
-             }
-            return $sql->errorInfo();
-        }
-
-        public function delete_articulos($id){
+        public function delete_articulos_proc($id,$id_img){
             $conectar= parent::conexion();
             parent::set_names();
             $sql="UPDATE articulo set
@@ -112,8 +130,14 @@
                 id = $id";
             $sql=$conectar->prepare($sql);
             if($sql->execute()){
+                $sql="UPDATE img SET
+                estado = 'Eliminado'
+               WHERE id_img = $id_img";
+            $sql=$conectar->prepare($sql);
+            if($sql->execute()){
                 return "ok";
-             }
+            }
+            }
             return $sql->errorInfo();
         }
 /* Fin CRUD Articulo*/
