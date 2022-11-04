@@ -4,7 +4,7 @@
         public function get_articulos(){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="select art.id,art.nom_articulo,art.sub_categoria,art.descripcion,art.estado,art.autor,art.fechayhora,ig.id_img,ig.id_art,ig.enlace,ig.fecha,ig.hora,ig.estado,usu.id_user,usu.nombre,usu.apellido from articulo art INNER JOIN img ig, usuario usu where art.estado = 'Publicado' and ig.id_art=art.id and usu.id_user = art.autor";
+            $sql="SELECT * FROM articulos WHERE estado = 'Publicado'";
             $sql=$conectar->prepare($sql);
             $sql->execute();
             return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
