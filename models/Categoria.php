@@ -56,6 +56,34 @@
              }
             return $sql->errorInfo();
         }
+
+        public function insert_articulos_proc($nom_articulo,$sub_categoria,$descripcion,$estado,$autor,$enlace){
+            date_default_timezone_set('America/Guatemala');
+            $conectar= parent::conexion();
+            parent::set_names();
+            // No Publicado Eliminado Archivado
+            $fecha = date('Y-m-d H:i:s');
+            $fechaimg = date('Y-m-d');
+            $hora = date('H:i:s');
+            $sql="CALL INSERT_ARTICULOS(?,?,?,?,?,?,?,?,?,?)";
+            $sql=$conectar->prepare($sql);
+            $sql->bindValue(1, $nom_articulo);
+            $sql->bindValue(2, $sub_categoria);
+            $sql->bindValue(3, $descripcion);
+            $sql->bindValue(4, $estado);
+            $sql->bindValue(5, $autor);
+            $sql->bindValue(6, $fecha);
+            $sql->bindValue(7, $enlace);
+            $sql->bindValue(8, $fechaimg);
+            $sql->bindValue(9, $hora);
+            $sql->bindValue(10,'Publicado');
+
+
+            if($sql->execute()){
+                return "ok";
+             }
+            return $sql->errorInfo();
+        }
         
 
         public function update_articulos($id,$nom_articulo,$sub_categoria,$descripcion,$estado,$autor){

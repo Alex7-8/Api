@@ -37,9 +37,15 @@ if($method == "OPTIONS") {
                 echo json_encode(array('status' => 'Guardado Correctamente'));}
             else{
                 echo json_encode($datos);}
-            
         break;
 
+        case "SetartProc":
+            $datos=$categoria->insert_articulos_proc($body["nom_articulo"],$body["sub_categoria"],$body["descripcion"],$body["estado"],$body["autor"],$body['enlace']);
+            if($datos=="ok"){
+                echo json_encode(array('status' => 'Guardado Correctamente'));}
+            else{
+                echo json_encode($datos);}
+        break;
         case "Upart":
             $datos=$categoria->update_articulos($body["id"],$body["nom_articulo"],$body["sub_categoria"],$body["descripcion"],$body["estado"],$body["autor"],$body["fechayhora"]);
             if($datos=="ok"){
@@ -72,7 +78,7 @@ if($method == "OPTIONS") {
             echo json_encode($datos);
         break;
         case "Setimg":
-            $datos=$categoria->insert_img($body['id_art'],$body['enlace'],$body['fecha'],$body['hora']);
+            $datos=$categoria->insert_img($body['id_art'],$body['enlace']);
             if($datos=="ok"){
                 echo json_encode(array('status' => 'Guardado Correctamente'));}
             else{
