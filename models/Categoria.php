@@ -154,7 +154,7 @@
  public function get_img_Des(){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="SELECT * FROM img WHERE estado = 'Eliminado' ";
+            $sql="SELECT * FROM img WHERE estado = 'Eliminado' || estado = 'Archivado' || estado = 'No Publicado' ";
             $sql=$conectar->prepare($sql);
             $sql->execute();
             return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
