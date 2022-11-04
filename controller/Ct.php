@@ -69,7 +69,7 @@ if($method == "OPTIONS") {
         case "DelartProc":
             $id = $_GET["id"];
             $idimg = $_GET["idimg"];
-            $datos=$categoria->delete_articulos_proc($id,$id_img);
+            $datos=$categoria->delete_articulos_proc($id,$idimg);
             if($datos=="ok"){
                 echo json_encode(array('status' => 'Estado Actualizado a Eliminado'));}
             else{
