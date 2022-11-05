@@ -492,6 +492,19 @@
         $sql->execute();
         return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
     }
+    public function Activar_usuario($id){
+        $conectar= parent::conexion();
+        parent::set_names();
+        $sql="UPDATE usuario set
+            estado = 'Activo'
+            WHERE
+            id_user = $id";
+        $sql=$conectar->prepare($sql);
+        if($sql->execute()){
+            return "ok";
+         }
+        return $sql->errorInfo();
+    }
 /* Fin CRUD Usuarios*/ 
 
 /* Inicio CRUD Tipo de Usuario*/

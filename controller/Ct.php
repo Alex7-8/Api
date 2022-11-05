@@ -235,6 +235,14 @@ if($method == "OPTIONS") {
             else{
                 echo json_encode($datos);}
         break;
+        case "Acusu":
+            $id = $_GET["id"];
+            $datos=$categoria->Activar_usuario($id);
+            if($datos=="ok"){
+                echo json_encode(array('status' => 'Estado Actualizado a Inactivo'));}
+            else{
+                echo json_encode($datos);}
+        break;
     /*Fin Métodos para CRUD Usuarios*/
 
     /*Inicio Métodos para CRUD Tipo de Usuario*/
