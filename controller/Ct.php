@@ -200,6 +200,14 @@ if($method == "OPTIONS") {
             $datos=$categoria->get_usuario_des();
             echo json_encode($datos);
         break;
+        case "GusuInner":
+            $datos=$categoria->get_user_inner();
+            echo json_encode($datos);
+        break;
+        case "GusuInnerDes":
+            $datos=$categoria->get_user_inner_Des();
+            echo json_encode($datos);
+        break;
         case "GusuId":
             $id = $_GET["id"];
             $datos=$categoria->get_usuario_x_id($id);

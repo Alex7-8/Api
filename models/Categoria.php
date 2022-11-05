@@ -476,6 +476,22 @@
          }
         return $sql->errorInfo();
     }
+    public function get_user_inner(){
+        $conectar= parent::conexion();
+        parent::set_names();
+        $sql="SELECT usu.id_user, usu.nombre, usu.apellido, usu.correo, tp.rol, usu.estado, usu.img FROM usuario as usu INNER JOIN tipo_usuario as tp WHERE usu.estado='Activo' AND tp.id = usu.tip_user";
+        $sql=$conectar->prepare($sql);
+        $sql->execute();
+        return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function get_user_inner_Des(){
+        $conectar= parent::conexion();
+        parent::set_names();
+        $sql="SELECT usu.id_user, usu.nombre, usu.apellido, usu.correo, tp.rol, usu.estado, usu.img FROM usuario as usu INNER JOIN tipo_usuario as tp WHERE usu.estado='Inactivo' AND tp.id = usu.tip_user";
+        $sql=$conectar->prepare($sql);
+        $sql->execute();
+        return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+    }
 /* Fin CRUD Usuarios*/ 
 
 /* Inicio CRUD Tipo de Usuario*/
@@ -487,6 +503,7 @@
         $sql->execute();
         return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
     }
+    
     public function get_tipouserDes(){
         $conectar= parent::conexion();
         parent::set_names();
