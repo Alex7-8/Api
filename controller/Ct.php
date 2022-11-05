@@ -239,7 +239,7 @@ if($method == "OPTIONS") {
             $id = $_GET["id"];
             $datos=$categoria->Activar_usuario($id);
             if($datos=="ok"){
-                echo json_encode(array('status' => 'Estado Actualizado a Inactivo'));}
+                echo json_encode(array('status' => 'Estado Actualizado a Activado'));}
             else{
                 echo json_encode($datos);}
         break;
