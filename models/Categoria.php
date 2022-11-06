@@ -525,7 +525,7 @@
         if($sql->execute() != null){
             return "ok";
          }else{
-            return "error";
+            return $sql->errorInfo();
          }
         //return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
     }
