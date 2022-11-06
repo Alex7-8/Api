@@ -213,8 +213,14 @@ if($method == "OPTIONS") {
             $datos=$categoria->get_usuario_x_id($id);
             echo json_encode($datos);
         break;
+        case "GusuLog":
+            $usu = $_GET["usu"];
+            $pass = $_GET["pass"];
+            $datos=$categoria->get_user($usu,$pass);
+            echo json_encode($datos);
+        break;
         case "Setusu":
-            $datos=$categoria->insert_usuario($body["nombre"],$body["apellido"],$body["correo"],$body["pass"],$body["tip_user"],$body["img"]);
+            $datos=$categoria->insert_usuario($body["usuario"],$body["nombre"],$body["apellido"],$body["correo"],$body["pass"],$body["tip_user"],$body["img"]);
             if($datos=="ok"){
                 echo json_encode(array('status' => 'Guardado Correctamente'));}
             else{

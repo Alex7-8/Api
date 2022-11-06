@@ -431,12 +431,12 @@
         return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function insert_usuario($nombre,$apellido,$correo,$pass,$tip_user,$img){
+    public function insert_usuario($usuario,$nombre,$apellido,$correo,$pass,$tip_user,$img){
         $conectar= parent::conexion();
         parent::set_names();
-        $sql="INSERT INTO usuario(id_user,nombre,apellido,correo,pass,tip_user,estado,img) 
+        $sql="INSERT INTO usuario(id_user,usuario,nombre,apellido,correo,pass,tip_user,estado,img) 
         VALUES 
-        (NULL,'$nombre','$apellido','$correo','$pass','$tip_user','Activo','$img');";
+        (NULL,'$usuario','$nombre','$apellido','$correo','$pass','$tip_user','Activo','$img');";
         $sql=$conectar->prepare($sql);
         if($sql->execute()){
             return "ok";
@@ -479,7 +479,7 @@
     public function get_user_inner(){
         $conectar= parent::conexion();
         parent::set_names();
-        $sql="SELECT usu.id_user, usu.nombre, usu.apellido, usu.correo, tp.rol, usu.estado, usu.img FROM usuario as usu INNER JOIN tipo_usuario as tp WHERE usu.estado='Activo' AND tp.id = usu.tip_user";
+        $sql="SELECT usu.id_user, usu.usuario, usu.nombre, usu.apellido, usu.correo, tp.rol, usu.estado, usu.img FROM usuario as usu INNER JOIN tipo_usuario as tp WHERE usu.estado='Activo' AND tp.id = usu.tip_user";
         $sql=$conectar->prepare($sql);
         $sql->execute();
         return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
@@ -487,7 +487,7 @@
     public function get_user_inner_Des(){
         $conectar= parent::conexion();
         parent::set_names();
-        $sql="SELECT usu.id_user, usu.nombre, usu.apellido, usu.correo, tp.rol, usu.estado, usu.img FROM usuario as usu INNER JOIN tipo_usuario as tp WHERE usu.estado='Inactivo' AND tp.id = usu.tip_user";
+        $sql="SELECT usu.id_user, usu.usuario, usu.apellido, usu.correo, tp.rol, usu.estado, usu.img FROM usuario as usu INNER JOIN tipo_usuario as tp WHERE usu.estado='Inactivo' AND tp.id = usu.tip_user";
         $sql=$conectar->prepare($sql);
         $sql->execute();
         return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
@@ -504,6 +504,16 @@
             return "ok";
          }
         return $sql->errorInfo();
+    }
+    public function get_user($usu,$pass){
+        $conectar= parent::conexion();
+        parent::set_names();
+        $sql="SELECT * FROM usuario WHERE usuario = ? AND pass = ?";
+        $sql=$conectar->prepare($sql);
+        $sql->bindValue(1, $usu);
+        $sql->bindValue(2, $pass);
+        $sql->execute();
+        return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
     }
 /* Fin CRUD Usuarios*/ 
 
