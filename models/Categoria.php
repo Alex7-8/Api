@@ -522,7 +522,7 @@
         $sql=$conectar->prepare($sql);
         $sql->bindValue(1, $usu);
         $sql->bindValue(2, $pass);
-        if($sql->execute()){
+        if($sql->execute() != null){
             return "ok";
          }else{
             return "error";
