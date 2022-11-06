@@ -523,9 +523,9 @@
         $sql->bindValue(1, $usu);
         $sql->bindValue(2, $pass);
         if($sql->execute()){
-            return "Correcto";
+            return "ok";
          }else{
-            return "Incorrecto";
+            return "error";
          }
         //return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
     }

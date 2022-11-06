@@ -223,7 +223,10 @@ if($method == "OPTIONS") {
             $usu = $_GET["usu"];
             $pass = $_GET["pass"];
             $datos=$categoria->get_user($usu,$pass);
-            echo json_encode($datos);
+            if($datos=="ok"){
+                echo json_encode(array('status' => 'Correcto'));}
+            else{
+                echo json_encode(array('status' => 'Incorrecto'));}
         break;
         case "Setusu":
             $datos=$categoria->insert_usuario($body["usuario"],$body["nombre"],$body["apellido"],$body["correo"],$body["pass"],$body["tip_user"],$body["img"]);
