@@ -222,7 +222,7 @@ if($method == "OPTIONS") {
         case "Glog":
             $usu = $_GET["usu"];
             $pass = $_GET["pass"];
-            $datos=$categoria->get_user($usu,$pass);
+            $datos=$categoria->get_usern($usu,$pass);
             if($datos=="ok"){
                 echo json_encode(array('status' => 'Correcto'));}
             else{
