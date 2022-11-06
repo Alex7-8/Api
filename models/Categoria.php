@@ -524,9 +524,9 @@
         $sql->bindValue(2, $pass);
         if($sql->execute() != null){
             return "ok";
-         }else{
-            return $sql->errorInfo();
          }
+            return $sql->errorInfo();
+         
         //return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
     }
 /* Fin CRUD Usuarios*/ 
