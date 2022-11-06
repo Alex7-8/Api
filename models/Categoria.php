@@ -487,7 +487,7 @@
     public function get_user_inner_Des(){
         $conectar= parent::conexion();
         parent::set_names();
-        $sql="SELECT usu.id_user, usu.usuario, usu.apellido, usu.correo, tp.rol, usu.estado, usu.img FROM usuario as usu INNER JOIN tipo_usuario as tp WHERE usu.estado='Inactivo' AND tp.id = usu.tip_user";
+        $sql="SELECT usu.id_user, usu.usuario,usu.nombre, usu.apellido, usu.correo, tp.rol, usu.estado, usu.img FROM usuario as usu INNER JOIN tipo_usuario as tp WHERE usu.estado='Inactivo' AND tp.id = usu.tip_user";
         $sql=$conectar->prepare($sql);
         $sql->execute();
         return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
@@ -514,6 +514,20 @@
         $sql->bindValue(2, $pass);
         $sql->execute();
         return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function get_usern($usu,$pass){
+        $conectar= parent::conexion();
+        parent::set_names();
+        $sql="SELECT * FROM usuario WHERE usuario = ? AND pass = ?";
+        $sql=$conectar->prepare($sql);
+        $sql->bindValue(1, $usu);
+        $sql->bindValue(2, $pass);
+        if($sql->execute()){
+            return "Correcto";
+         }else{
+            return "Incorrecto";
+         }
+        //return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
     }
 /* Fin CRUD Usuarios*/ 
 
