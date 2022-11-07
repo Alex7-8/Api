@@ -213,6 +213,11 @@ if($method == "OPTIONS") {
             $datos=$categoria->get_usuario_x_id($id);
             echo json_encode($datos);
         break;
+        case "GId":
+            $id = $_GET["id"];
+            $datos=$categoria->get_user_x_innerId($id);
+            echo json_encode($datos);
+        break;
         case "GusuLog":
             $usu = $_GET["usu"];
             $pass = $_GET["pass"];
