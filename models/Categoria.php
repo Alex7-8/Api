@@ -431,12 +431,12 @@
         return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function insert_usuario($usuario,$nombre,$apellido,$correo,$pass,$tip_user,$img){
+    public function insert_usuario($usuario,$nombre,$apellido,$correo,$pass,$tip_user,$img,$descripcion){
         $conectar= parent::conexion();
         parent::set_names();
         $sql="INSERT INTO usuario(id_user,usuario,nombre,apellido,correo,pass,tip_user,estado,img) 
         VALUES 
-        (NULL,'$usuario','$nombre','$apellido','$correo','$pass','$tip_user','Activo','$img');";
+        (NULL,'$usuario','$nombre','$apellido','$correo','$pass','$tip_user','Activo','$img','$descripcion');";
         $sql=$conectar->prepare($sql);
         if($sql->execute()){
             return "ok";
@@ -444,7 +444,7 @@
         return $sql->errorInfo();
     }
 
-    public function update_usuario($id_user,$nombre,$apellido,$correo,$pass,$tip_user,$estado,$img){
+    public function update_usuario($id_user,$nombre,$apellido,$correo,$pass,$tip_user,$estado,$img,$descripcion){
         $conectar= parent::conexion();
         parent::set_names();
         $sql="UPDATE usuario set
@@ -455,6 +455,7 @@
             tip_user = '$tip_user',
             estado = '$estado',
             img = '$img'
+            descripcion = '$descripcion'
             WHERE id_user = $id_user";
         $sql=$conectar->prepare($sql);
         if($sql->execute()){
@@ -487,7 +488,7 @@
     public function get_user_x_innerId($id){
         $conectar= parent::conexion();
         parent::set_names();
-        $sql="SELECT usu.id_user,usu.usuario, usu.nombre, usu.apellido, usu.correo, tp.rol, usu.estado, usu.img FROM usuario as usu INNER JOIN tipo_usuario as tp WHERE usu.id_user='$id' AND tp.id = usu.tip_user";
+        $sql="SELECT usu.id_user,usu.usuario, usu.nombre, usu.apellido, usu.correo, tp.rol, usu.estado, usu.img, usu.descripcion FROM usuario as usu INNER JOIN tipo_usuario as tp WHERE usu.id_user='$id' AND tp.id = usu.tip_user";
         $sql=$conectar->prepare($sql);
        // $sql->bindValue(1, $id);
         $sql->execute();
