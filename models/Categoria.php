@@ -148,6 +148,19 @@
             }
             return $sql->errorInfo();
         }
+        public function Activar_articulos($id){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="UPDATE articulo set
+                estado = 'Publicado'
+                WHERE
+                id = $id";
+            $sql=$conectar->prepare($sql);
+            if($sql->execute()){
+                return "ok";
+             }
+            return $sql->errorInfo();
+        }
 /* Fin CRUD Articulo*/
 
 /* Inicio CRUD Img*/

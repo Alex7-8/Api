@@ -66,6 +66,14 @@ if($method == "OPTIONS") {
             else{
                 echo json_encode($datos);}
         break;
+        case "Actart":
+            $id = $_GET["id"];
+            $datos=$categoria->Activar_articulos($id);
+            if($datos=="ok"){
+                echo json_encode(array('status' => 'Estado Actualizado a Publicado'));}
+            else{
+                echo json_encode($datos);}
+        break;
         case "DelartProc":
             $id = $_GET["id"];
             $idimg = $_GET["idimg"];
