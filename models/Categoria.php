@@ -434,7 +434,7 @@
     public function insert_usuario($usuario,$nombre,$apellido,$correo,$pass,$tip_user,$img,$descripcion){
         $conectar= parent::conexion();
         parent::set_names();
-        $sql="INSERT INTO usuario(id_user,usuario,nombre,apellido,correo,pass,tip_user,estado,img) 
+        $sql="INSERT INTO usuario(id_user,usuario,nombre,apellido,correo,pass,tip_user,estado,img,descripcion)) 
         VALUES 
         (NULL,'$usuario','$nombre','$apellido','$correo','$pass','$tip_user','Activo','$img','$descripcion');";
         $sql=$conectar->prepare($sql);
