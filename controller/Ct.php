@@ -36,7 +36,7 @@ if($method == "OPTIONS") {
         break;
 
         case "Setart":
-            $datos=$categoria->insert_articulos($body["nom_articulo"],$body["sub_categoria"],$body["descripcion"],$body["estado"],$body["autor"]);
+            $datos=$categoria->insert_articulos($body["nom_articulo"],$body["sub_categoria"],$body["descripcion"],$body["estado"],$body["autor"],$body["estilo"]);
             if($datos=="ok"){
                 echo json_encode(array('status' => 'Guardado Correctamente'));}
             else{
@@ -44,14 +44,14 @@ if($method == "OPTIONS") {
         break;
 
         case "SetartProc":
-            $datos=$categoria->insert_articulos_proc($body["nom_articulo"],$body["sub_categoria"],$body["descripcion"],$body["estado"],$body["autor"],$body['enlace']);
+            $datos=$categoria->insert_articulos_proc($body["nom_articulo"],$body["sub_categoria"],$body["descripcion"],$body["estado"],$body["autor"],$body['enlace'],$body["estilo"]);
             if($datos=="ok"){
                 echo json_encode(array('status' => 'Guardado Correctamente'));}
             else{
                 echo json_encode($datos);}
         break;
         case "Upart":
-            $datos=$categoria->update_articulos($body["id"],$body["nom_articulo"],$body["sub_categoria"],$body["descripcion"],$body["estado"],$body["autor"],$body["fechayhora"]);
+            $datos=$categoria->update_articulos($body["id"],$body["nom_articulo"],$body["sub_categoria"],$body["descripcion"],$body["estado"],$body["autor"],$body["fechayhora"],$body["estilo"]);
             if($datos=="ok"){
                 echo json_encode(array('status' => 'Actualizado Correctamente'));}
             else{

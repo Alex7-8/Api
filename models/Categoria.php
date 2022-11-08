@@ -28,7 +28,7 @@
             return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
         }
 
-        public function insert_articulos($nom_articulo,$sub_categoria,$descripcion,$estado,$autor){
+        public function insert_articulos($nom_articulo,$sub_categoria,$descripcion,$estado,$autor,$estilo){
             date_default_timezone_set('America/Guatemala');
             $conectar= parent::conexion();
             parent::set_names();
@@ -41,7 +41,8 @@
             descripcion,
             estado,
             autor,
-            fechayhora) 
+            fechayhora,
+            estilo) 
             VALUES
             (NULL,
             '$nom_articulo',
@@ -49,7 +50,8 @@
             '$descripcion',
             '$estado',
             $autor,
-            '$fecha')";
+            '$fecha'
+            '$estilo')";
             $sql=$conectar->prepare($sql);
             if($sql->execute()){
                 return "ok";
@@ -58,7 +60,7 @@
         }
 
         
-        public function update_articulos($id,$nom_articulo,$sub_categoria,$descripcion,$estado,$autor){
+        public function update_articulos($id,$nom_articulo,$sub_categoria,$descripcion,$estado,$autor,$estilo){
             $conectar= parent::conexion();
             parent::set_names();
             $sql="UPDATE articulo set
@@ -67,6 +69,7 @@
                 descripcion = '$descripcion',
                 estado = '$estado',
                 autor = $autor
+                estilo = '$estilo'
                 WHERE id = $id";
             $sql=$conectar->prepare($sql);
             if($sql->execute()){
@@ -91,7 +94,7 @@
         public function get_articulos_proc(){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="select art.id,art.nom_articulo,art.sub_categoria,art.descripcion,art.estado,art.autor,art.fechayhora,ig.id_img,ig.id_art,ig.enlace,ig.fecha,ig.hora,ig.estado,usu.id_user,usu.nombre,usu.apellido from articulo art INNER JOIN img ig, usuario usu where art.estado = 'Publicado' and ig.id_art=art.id and usu.id_user = art.autor";
+            $sql="select art.id,art.nom_articulo,art.sub_categoria,art.descripcion,art.estado,art.autor,art.fechayhora,ig.id_img,art.estilo,ig.id_art,ig.enlace,ig.fecha,ig.hora,ig.estado,usu.id_user,usu.nombre,usu.apellido from articulo art INNER JOIN img ig, usuario usu where art.estado = 'Publicado' and ig.id_art=art.id and usu.id_user = art.autor";
             $sql=$conectar->prepare($sql);
             $sql->execute();
             return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
@@ -99,12 +102,12 @@
         public function get_articulos_pr(){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="select art.id,art.nom_articulo,art.sub_categoria,art.descripcion,art.estado,art.autor,art.fechayhora,ig.id_img,ig.id_art,ig.enlace,ig.fecha,ig.hora,ig.estado,usu.id_user,usu.nombre,usu.apellido from articulo art INNER JOIN img ig, usuario usu where art.estado = 'Publicado' and ig.id_art=art.id and usu.id_user = art.autor";
+            $sql="select art.id,art.nom_articulo,art.sub_categoria,art.descripcion,art.estado,art.autor,art.fechayhora,ig.id_img,art.estilo,ig.id_art,ig.enlace,ig.fecha,ig.hora,ig.estado,usu.id_user,usu.nombre,usu.apellido from articulo art INNER JOIN img ig, usuario usu where art.estado = 'Publicado' and ig.id_art=art.id and usu.id_user = art.autor";
             $sql=$conectar->prepare($sql);
             $sql->execute();
             return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
         }
-        public function insert_articulos_proc($nom_articulo,$sub_categoria,$descripcion,$estado,$autor,$enlace){
+        public function insert_articulos_proc($nom_articulo,$sub_categoria,$descripcion,$estado,$autor,$enlace,$estilo){
             date_default_timezone_set('America/Guatemala');
             $conectar= parent::conexion();
             parent::set_names();
@@ -112,7 +115,7 @@
             $fecha = date('Y-m-d H:i:s');
             $fechaimg = date('Y-m-d');
             $hora = date('H:i:s');
-            $sql="CALL INSERT_ARTICULOS(?,?,?,?,?,?,?,?,?,?)";
+            $sql="CALL INSERT_ARTICULOS(?,?,?,?,?,?,?,?,?,?,?)";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $nom_articulo);
             $sql->bindValue(2, $sub_categoria);
@@ -124,6 +127,7 @@
             $sql->bindValue(8, $fechaimg);
             $sql->bindValue(9, $hora);
             $sql->bindValue(10, $estado);
+            $sql->bindValue(11, $estilo);
             if($sql->execute()){
                 return "ok";
              }
