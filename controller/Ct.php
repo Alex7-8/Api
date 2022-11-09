@@ -255,6 +255,13 @@ if($method == "OPTIONS") {
             else{
                 echo json_encode($datos);}
         break;
+        case "UpusuAdm":
+            $datos=$categoria->update_usuario_adm($body["id_user"],$body["nombre"],$body["apellido"],$body["correo"],$body["tip_user"],$body["estado"],$body["img"],$body["descripcion"]);
+            if($datos=="ok"){
+                echo json_encode(array('status' => 'Actualizado Correctamente'));}
+            else{
+                echo json_encode($datos);}
+        break;
         case "Delusu":
             $id = $_GET["id"];
             $datos=$categoria->delete_usuario($id);

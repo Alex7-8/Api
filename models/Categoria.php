@@ -481,6 +481,24 @@
         return $sql->errorInfo();
     }
 
+    public function update_usuario_adm($id_user,$nombre,$apellido,$correo,$tip_user,$estado,$img,$descripcion){
+        $conectar= parent::conexion();
+        parent::set_names();
+        $sql="UPDATE usuario set
+            nombre = '$nombre',
+            apellido = '$apellido',
+            correo = '$correo',
+            tip_user = '$tip_user',
+            estado = '$estado',
+            img = '$img'
+            descripcion = '$descripcion'
+            WHERE id_user = $id_user";
+        $sql=$conectar->prepare($sql);
+        if($sql->execute()){
+            return "ok";
+         }
+        return $sql->errorInfo();
+    }
     public function delete_usuario($id){
         $conectar= parent::conexion();
         parent::set_names();
