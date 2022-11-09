@@ -505,7 +505,7 @@
     public function get_user_x_innerId($id){
         $conectar= parent::conexion();
         parent::set_names();
-        $sql="SELECT usu.id_user,usu.usuario, usu.nombre, usu.apellido, usu.correo, usu.tip_user tp.rol, usu.estado, usu.img, usu.descripcion FROM usuario as usu INNER JOIN tipo_usuario as tp WHERE usu.id_user='$id' AND tp.id = usu.tip_user";
+        $sql="SELECT usu.id_user,usu.usuario, usu.nombre, usu.apellido, usu.correo, tp.rol, usu.estado, usu.img, usu.descripcion FROM usuario as usu INNER JOIN tipo_usuario as tp WHERE usu.id_user='$id' AND tp.id = usu.tip_user";
         $sql=$conectar->prepare($sql);
        // $sql->bindValue(1, $id);
         $sql->execute();
