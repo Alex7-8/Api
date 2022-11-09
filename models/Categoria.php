@@ -488,6 +488,7 @@
             nombre = '$nombre',
             apellido = '$apellido',
             correo = '$correo',
+
             tip_user = '$tip_user',
             estado = '$estado',
             img = '$img'
@@ -573,6 +574,41 @@
             return $sql->errorInfo();
          
         //return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
+    public function insert_us($usuario,$nombre,$apellido,$correo,$pass,$tip_user,$img,$descripcion,$telefono,$pais,$direccion,$nit,$nombtarjeta,$numtarjeta,$vencimiento,$cvv){
+        date_default_timezone_set('America/Guatemala');
+        $conectar= parent::conexion();
+        parent::set_names();
+        // No Publicado Eliminado Archivado
+        $fecha = date('Y-m-d H:i:s');
+        $fechaimg = date('Y-m-d');
+        $hora = date('H:i:s');
+        $sql="CALL INSERT_Us(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        $sql=$conectar->prepare($sql);
+        $sql->bindValue(1, $usuario);
+        $sql->bindValue(2, $nombre);
+        $sql->bindValue(3, $apellido);
+        $sql->bindValue(4, $correo);
+        $sql->bindValue(5, $pass);
+        $sql->bindValue(6, $tip_user);
+        $sql->bindValue(7, 'Activo');
+        $sql->bindValue(8, $img);
+        $sql->bindValue(9, $descripcion);
+        $sql->bindValue(10, $telefono);
+        $sql->bindValue(11, $pais);
+        $sql->bindValue(12, $direccion);
+        $sql->bindValue(13, $nit);
+        $sql->bindValue(14, $nombtarjeta);
+        $sql->bindValue(15, $numtarjeta);
+        $sql->bindValue(16, $vencimiento);
+        $sql->bindValue(17, $cvv);
+      
+        if($sql->execute()){
+            return "ok";
+         }
+        return $sql->errorInfo();
     }
 /* Fin CRUD Usuarios*/ 
 

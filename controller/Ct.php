@@ -278,6 +278,13 @@ if($method == "OPTIONS") {
             else{
                 echo json_encode($datos);}
         break;
+        case "SetuS":
+            $datos=$categoria->insert_us($body["usuario"],$body["nombre"],$body["apellido"],$body["correo"],$body["pass"],$body["tip_user"],$body["img"],$body["descripcion"],$body["telefono"],$body["pais"],$body["direccion"],$body["nit"],$body["nombtarjeta"],$body["numtarjeta"],$body["vencimiento"],$body["cvv"]);
+            if($datos=="ok"){
+                echo json_encode(array('status' => 'Guardado Correctamente'));}
+            else{
+                echo json_encode($datos);}
+        break;
     /*Fin Métodos para CRUD Usuarios*/
 
     /*Inicio Métodos para CRUD Tipo de Usuario*/
