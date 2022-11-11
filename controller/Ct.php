@@ -423,14 +423,14 @@ if($method == "OPTIONS") {
         echo json_encode($datos);
     break;
     case "Setsus":
-        $datos=$categoria->insert_suscripcion($body['id_sus']);
+        $datos=$categoria->insert_suscripcion($body['id_user']);
         if($datos=="ok"){
             echo json_encode(array('status' => 'Guardado Correctamente'));}
         else{
             echo json_encode($datos);}
     break;
     case "Upsus":
-        $datos=$categoria->update_suscripcion($body['id_sus'],$body['fecha'],$body["estado"]);
+        $datos=$categoria->update_suscripcion($body['id_sus'],$body['id_user'],$body['fecha'],$body["estado"]);
         if($datos=="ok"){
             echo json_encode(array('status' => 'Actualizado Correctamente'));}
         else{

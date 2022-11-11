@@ -854,25 +854,26 @@ public function get_categor($nombre){
         return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
 
     }
-    public function insert_suscripcion($id_sus){
+    public function insert_suscripcion($id_user){
         date_default_timezone_set('America/Guatemala');
         $fecha_sus = date('Y-m-d');
         $conectar= parent::conexion();
         parent::set_names();
-        $sql="INSERT INTO suscripcion(id_sus,fecha_sus,estado) 
+        $sql="INSERT INTO suscripcion(id_sus,id_user,fecha_sus,estado) 
         VALUES 
-        ('$id_sus','$fecha_sus','Activo');";
+        (null'$id_user','$fecha_sus','Activo');";
         $sql=$conectar->prepare($sql);
         if($sql->execute()){
             return "ok";
         }
         return $sql->errorInfo();
     }
-    public function update_suscripcion($id_sus,$fecha,$estado){
+    public function update_suscripcion($id_sus,$id_user,$fecha,$estado){
         $conectar= parent::conexion();
         parent::set_names();
         $sql="UPDATE suscripcion set
             id_sus = '$id_sus',
+            id_user = '$id_user',
             fecha_sus = '$fecha',
             estado = '$estado'
             WHERE id_sus = $id_sus";
