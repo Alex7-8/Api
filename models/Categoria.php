@@ -873,7 +873,6 @@ public function get_categor($nombre){
         $conectar= parent::conexion();
         parent::set_names();
         $sql="UPDATE suscripcion set
-            id_sus = '$id_sus',
             id_user = '$id_user',
             fecha_sus = '$fecha',
             estado = '$estado'
