@@ -169,6 +169,9 @@
 
 
         public function update_articulosIMG($id,$nom_articulo,$sub_categoria,$descripcion,$estado,$autor,$estilo,$id_img,$enlace,$fecha,$hora,$est){
+            date_default_timezone_set('America/Guatemala');
+            $fecha = date('Y-m-d H:i:s');
+
             $conectar= parent::conexion();
             parent::set_names();
             $sql="UPDATE articulo set
@@ -177,7 +180,7 @@
                 descripcion = '$descripcion',
                 estado = '$estado',
                 autor = $autor,
-                fechayhora,
+                fechayhora = '$fecha',
                 estilo = '$estilo',
                 WHERE id = $id";
             $sql=$conectar->prepare($sql);
