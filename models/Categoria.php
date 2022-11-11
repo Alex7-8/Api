@@ -168,7 +168,7 @@
         }
 
 
-        public function update_articulosIMG($id,$nom_articulo,$sub_categoria,$descripcion,$estado,$fechayhora,$autor,$estilo,$id_img,$enlace,$fecha,$hora,$est){
+        public function update_articulosIMG($id,$nom_articulo,$sub_categoria,$descripcion,$estado,$autor,$estilo,$id_img,$enlace,$fecha,$hora,$est){
             $conectar= parent::conexion();
             parent::set_names();
             $sql="UPDATE articulo set
