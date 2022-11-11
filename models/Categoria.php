@@ -166,6 +166,38 @@
              }
             return $sql->errorInfo();
         }
+
+        public function update_articulosIMG($id,$nom_articulo,$sub_categoria,$descripcion,$estado,$autor,$estilo,$id_img,$enlace,$fecha,$hora,$est){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="UPDATE articulo set
+                nom_articulo = '$nom_articulo',
+                sub_categoria = '$sub_categoria',
+                descripcion = '$descripcion',
+                estado = '$estado',
+                autor = $autor
+                estilo = '$estilo'
+                WHERE id = $id";
+            $sql=$conectar->prepare($sql);
+            
+            if($sql->execute()){
+                return "ok";
+                $sql=" UPDATE img SET
+            id_art = '$id',
+            enlace  = '$enlace',
+            fecha = '$fecha',
+            hora = '$hora',
+            estado = '$est'
+            WHERE id_img = $id_img";
+            $sql=$conectar->prepare($sql);
+            if($sql->execute()){
+                return "ok";
+             }
+            return $sql->errorInfo();
+             
+            }
+            return $sql->errorInfo();
+        }
 /* Fin CRUD Articulo*/
 
 /* Inicio CRUD Img*/

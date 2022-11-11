@@ -62,6 +62,14 @@ if($method == "OPTIONS") {
                 echo json_encode($datos);}
         break;
         
+        case "UpartM":
+            $datos=$categoria->update_articulosIMG($body["id"],$body["nom_articulo"],$body["sub_categoria"],$body["descripcion"],$body["estado"],$body["autor"],$body["fechayhora"],$body["estilo"],$body["id_img"],$body["enlace"],$body["fecha"],$body["hora"],$body["estado"]);
+            if($datos=="ok"){
+                echo json_encode(array('status' => 'Actualizado Correctamente'));}
+            else{
+                echo json_encode($datos);}
+        break;
+
         case "Delart":
             $id = $_GET["id"];
             $datos=$categoria->delete_articulos($id);
