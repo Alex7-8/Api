@@ -256,7 +256,7 @@ if($method == "OPTIONS") {
                 echo json_encode($datos);}
         break;
         case "UpusuAdm":
-            $datos=$categoria->update_usuario_adm($body["id_user"],$body["nombre"],$body["apellido"],$body["correo"],$body["tip_user"],$body["estado"],$body["img"],$body["descripcion"]);
+            $datos=$categoria->update_usuario_adm($body["id_user"],$body["nombre"],$body["apellido"],$body["correo"],$body['pass'],$body["tip_user"],$body["estado"],$body["img"],$body["descripcion"]);
             if($datos=="ok"){
                 echo json_encode(array('status' => 'Actualizado Correctamente'));}
             else{

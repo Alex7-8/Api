@@ -481,14 +481,14 @@
         return $sql->errorInfo();
     }
 
-    public function update_usuario_adm($id_user,$nombre,$apellido,$correo,$tip_user,$estado,$img,$descripcion){
+    public function update_usuario_adm($id_user,$nombre,$apellido,$correo,$pass,$tip_user,$estado,$img,$descripcion){
         $conectar= parent::conexion();
         parent::set_names();
         $sql="UPDATE usuario set
             nombre = '$nombre',
             apellido = '$apellido',
             correo = '$correo',
-
+            pass = '$pass',
             tip_user = '$tip_user',
             estado = '$estado',
             img = '$img'
