@@ -491,7 +491,7 @@
             pass = '$pass',
             tip_user = '$tip_user',
             estado = '$estado',
-            img = '$img'
+            img = '$img',
             descripcion = '$descripcion'
             WHERE id_user = $id_user";
         $sql=$conectar->prepare($sql);
