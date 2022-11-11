@@ -862,7 +862,7 @@ public function get_categor($nombre){
         parent::set_names();
         $sql="INSERT INTO suscripcion(id_sus,id_user,fecha_sus,estado) 
         VALUES 
-        (null'$id_user','$fecha_sus','Activo');";
+        (null',$id_user','$fecha_sus','Activo');";
         $sql=$conectar->prepare($sql);
         if($sql->execute()){
             return "ok";

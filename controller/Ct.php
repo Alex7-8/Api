@@ -431,7 +431,7 @@ if($method == "OPTIONS") {
         if($datos=="ok"){
             echo json_encode(array('status' => 'Guardado Correctamente'));}
         else{
-            echo json_encode($datos);}
+            echo json_encode($datos);} 
     break;
     case "Upsus":
         $datos=$categoria->update_suscripcion($body['id_sus'],$body['id_user'],$body['fecha'],$body["estado"]);
