@@ -471,7 +471,7 @@
             pass = '$pass',
             tip_user = '$tip_user',
             estado = '$estado',
-            img = '$img'
+            img = '$img',
             descripcion = '$descripcion'
             WHERE id_user = $id_user";
         $sql=$conectar->prepare($sql);
@@ -868,11 +868,12 @@ public function get_categor($nombre){
         }
         return $sql->errorInfo();
     }
-    public function update_suscripcion($id_sus,$estado){
+    public function update_suscripcion($id_sus,$fecha,$estado){
         $conectar= parent::conexion();
         parent::set_names();
         $sql="UPDATE suscripcion set
             id_sus = '$id_sus',
+            fecha_sus = '$fecha',
             estado = '$estado'
             WHERE id_sus = $id_sus";
         $sql=$conectar->prepare($sql);
