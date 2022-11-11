@@ -50,7 +50,7 @@
             '$descripcion',
             '$estado',
             $autor,
-            '$fecha'
+            '$fecha',
             '$estilo')";
             $sql=$conectar->prepare($sql);
             if($sql->execute()){
