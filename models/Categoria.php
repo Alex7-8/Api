@@ -99,11 +99,12 @@
             $sql->execute();
             return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
         }
-        public function get_articulos_pr(){
+        public function get_articulos_pr($id){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="select art.id,art.nom_articulo,art.sub_categoria,art.descripcion,art.estado,art.autor,art.fechayhora,ig.id_img,art.estilo,ig.id_art,ig.enlace,ig.fecha,ig.hora,ig.estado,usu.id_user,usu.nombre,usu.apellido from articulo art INNER JOIN img ig, usuario usu where art.estado = 'Publicado' and ig.id_art=art.id and usu.id_user = art.autor";
+            $sql="select art.id,art.nom_articulo,art.sub_categoria,art.descripcion,art.estado,art.autor,art.fechayhora,ig.id_img,art.estilo,ig.id_art,ig.enlace,ig.fecha,ig.hora,ig.estado,usu.id_user,usu.nombre,usu.apellido from articulo art INNER JOIN img ig, usuario usu where art.estado = 'Publicado' and ig.id_art=art.id and usu.id_user = art.autor and art.id = ?";
             $sql=$conectar->prepare($sql);
+            $sql->bindValue(1, $id);
             $sql->execute();
             return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
         }

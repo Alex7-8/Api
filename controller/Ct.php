@@ -34,7 +34,11 @@ if($method == "OPTIONS") {
             $datos=$categoria->get_articulos_x_id($id);
             echo json_encode($datos);
         break;
-
+        case "GartIdPr":
+            $id = $_GET["id"];
+            $datos=$categoria->get_articulos_pr($id);
+            echo json_encode($datos);
+        break;
         case "Setart":
             $datos=$categoria->insert_articulos($body["nom_articulo"],$body["sub_categoria"],$body["descripcion"],$body["estado"],$body["autor"],$body["estilo"]);
             if($datos=="ok"){
