@@ -167,7 +167,7 @@
             return $sql->errorInfo();
         }
 
-        public function update_articulosIMG($id,$nom_articulo,$sub_categoria,$descripcion,$estado,$autor,$estilo,$id_img,$enlace,$fecha,$hora,$est){
+        public function update_articulosIMG($id,$nom_articulo,$sub_categoria,$descripcion,$estado,$fechayhora,$autor,$estilo,$id_img,$enlace,$fecha,$hora,$est){
             $conectar= parent::conexion();
             parent::set_names();
             $sql="UPDATE articulo set
@@ -175,8 +175,9 @@
                 sub_categoria = '$sub_categoria',
                 descripcion = '$descripcion',
                 estado = '$estado',
-                autor = $autor
-                estilo = '$estilo'
+                autor = $autor,
+                fechayhora,
+                estilo = '$estilo',
                 WHERE id = $id";
             $sql=$conectar->prepare($sql);
             
