@@ -875,7 +875,7 @@ public function get_categor($nombre){
         $sql="UPDATE suscripcion set
             fecha_sus = '$fecha',
             estado = '$estado'
-            WHERE id_sus = $id_sus";
+            WHERE id_sus = '$id_sus'";
         $sql=$conectar->prepare($sql);
         if($sql->execute()){
             return "ok";
