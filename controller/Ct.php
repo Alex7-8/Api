@@ -63,7 +63,7 @@ if($method == "OPTIONS") {
         break;
         
         case "UpartM":
-            $datos=$categoria->update_articulosIMG($body["id"],$body["nom_articulo"],$body["sub_categoria"],$body["descripcion"],$body["estado"],$body["autor"],$body["fechayhora"],$body["estilo"],$body["id_img"],$body["enlace"],$body["fecha"],$body["hora"],$body["estado"]);
+            $datos=$categoria->update_articulosIMG($body["id"],$body["nom_articulo"],$body["sub_categoria"],$body["descripcion"],$body["estado"],$body["autor"],$body["fechayhora"],$body["estilo"],$body["id_img"],$body["enlace"],$body["fecha"],$body["hora"],$body["estado_img"]);
             if($datos=="ok"){
                 echo json_encode(array('status' => 'Actualizado Correctamente'));}
             else{
