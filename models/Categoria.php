@@ -68,7 +68,7 @@
                 sub_categoria = '$sub_categoria',
                 descripcion = '$descripcion',
                 estado = '$estado',
-                autor = $autor
+                autor = $autor,
                 estilo = '$estilo'
                 WHERE id = $id";
             $sql=$conectar->prepare($sql);
