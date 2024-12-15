@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/9b281e1f-41c7-4bf3-a1e5-6b681cb9d4fa/resourceGroups/Dev/providers/Microsoft.Web/sites/appprestamos",
+    "appService.deploySubpath": "config"
+}

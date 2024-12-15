@@ -1,34 +1,110 @@
 <?php
-    class Categoria extends Conectar{
-/* Inicio CRUD Articulo*/
-        public function get_articulos(){
+    class Login extends Conectar{
+/* Inicio CRUD Tabla Usuarios*/
+
+public function Get_Login($Id_usuario, $Contrasena) {
+    date_default_timezone_set('America/Guatemala');
+    $conectar = parent::conexion();
+    parent::set_names();
+    
+    $hash = hash('sha256', $Contrasena);
+
+    // Llamada al procedimiento almacenado
+    $sql = "CALL SP_GET_LOGIN(?,?,@RESULTADO,@IDUSUARIO,@ROL)";
+    $stmt = $conectar->prepare($sql);
+    $stmt->bindValue(1, $Id_usuario);
+    $stmt->bindValue(2, $hash);
+
+    // Ejecutar el procedimiento
+    if ($stmt->execute()) {
+        // Consultar los valores de los parámetros de salida
+        $outputQuery = "SELECT @RESULTADO AS resultado, @IDUSUARIO AS idusuario, @ROL AS rol";
+        $outputStmt = $conectar->query($outputQuery);
+        $output = $outputStmt->fetch(PDO::FETCH_ASSOC);
+
+        // Retornar los valores como un array
+        return [
+            'resultado' => $output['resultado'],
+            'idusuario' => $output['idusuario'],
+            'rol' => $output['rol']
+        ];
+    }
+
+    // Si falla la ejecución, devolver el error
+    return $stmt->errorInfo();
+}
+
+
+        public function Get_Usuarios(){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="SELECT * FROM articulo WHERE estado = 'Publicado'";
-            $sql=$conectar->prepare($sql);
-            $sql->execute();
-            return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
-        }
-        public function get_articulos_des(){
-            $conectar= parent::conexion();
-            parent::set_names();
-            $sql="SELECT * FROM articulo WHERE estado = 'No Publicado' || estado = 'Archivado'|| estado = 'Eliminado' ";
+            $sql="SELECT * FROM prestamos_md.usuario";
             $sql=$conectar->prepare($sql);
             $sql->execute();
             return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
         }
 
-        public function get_articulos_x_id($id){
-            $conectar= parent::conexion();
+
+        public function Set_Usuario($Id_usuario, $Nombres, $Contrasena, $usuario){
+            date_default_timezone_set('America/Guatemala');
+            $conectar = parent::conexion();
             parent::set_names();
-            $sql="SELECT * FROM articulo WHERE id = ?";
-            $sql=$conectar->prepare($sql);
-            $sql->bindValue(1, $id);
-            $sql->execute();
-            return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+        
+            $fecha = date('Y-m-d H:i:s');
+            $hash = hash('sha256', $Contrasena);
+        
+            $sql = "CALL SP_SET_USUARIO(?,?,?,?,?,?,?,? ,@RESULTADO)";
+            $stmt = $conectar->prepare($sql);
+            $stmt->bindValue(1, $Id_usuario);
+            $stmt->bindValue(2, 2);
+            $stmt->bindValue(3, $Nombres);
+            $stmt->bindValue(4, $hash);
+            $stmt->bindValue(5, $fecha);
+            $stmt->bindValue(6, null);
+            $stmt->bindValue(7, $usuario);
+            $stmt->bindValue(8, null);
+        
+            if ($stmt->execute()) {
+                // Recuperar el mensaje del parámetro de salida
+                $resultado = $conectar->query("SELECT @RESULTADO AS mensaje")->fetch(PDO::FETCH_ASSOC);
+                return $resultado['mensaje'];
+            }
+            return $stmt->errorInfo();
+        }
+        
+
+        public function Put_Usuario($Id_usuario, $Nombres, $Contrasena, $usuario){
+            date_default_timezone_set('America/Guatemala');
+            $conectar = parent::conexion();
+            parent::set_names();
+        
+            $fecha = date('Y-m-d H:i:s');
+            $hash = hash('sha256', $Contrasena);
+        
+            $sql = "CALL SP_PUT_USUARIO(?,?,?,?,? ,@RESULTADO)";
+            $stmt = $conectar->prepare($sql);
+            $stmt->bindValue(1, $Id_usuario);
+            $stmt->bindValue(2, $Nombres);
+            $stmt->bindValue(3, $hash);
+            $stmt->bindValue(4, $fecha);
+            $stmt->bindValue(5, $usuario);
+            if ($stmt->execute()) {
+                // Recuperar el mensaje del parámetro de salida
+                $resultado = $conectar->query("SELECT @RESULTADO AS mensaje")->fetch(PDO::FETCH_ASSOC);
+                return $resultado['mensaje'];
+            }
+            return $stmt->errorInfo();
         }
 
-        public function insert_articulos($nom_articulo,$sub_categoria,$descripcion,$estado,$autor,$estilo){
+
+
+
+
+
+
+
+
+        public function Set_Udsuario($nom_articulo,$sub_categoria,$descripcion,$estado,$autor,$estilo){
             date_default_timezone_set('America/Guatemala');
             $conectar= parent::conexion();
             parent::set_names();
@@ -58,6 +134,30 @@
              }
             return $sql->errorInfo();
         }
+
+
+
+
+        public function get_articulos_des(){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="SELECT * FROM articulo WHERE estado = 'No Publicado' || estado = 'Archivado'|| estado = 'Eliminado' ";
+            $sql=$conectar->prepare($sql);
+            $sql->execute();
+            return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        public function get_articulos_x_id($id){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="SELECT * FROM articulo WHERE id = ?";
+            $sql=$conectar->prepare($sql);
+            $sql->bindValue(1, $id);
+            $sql->execute();
+            return $resultado=$sql->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        
 
         
         public function update_articulos($id,$nom_articulo,$sub_categoria,$descripcion,$estado,$autor,$estilo){
